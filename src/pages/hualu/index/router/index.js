@@ -30,5 +30,10 @@ export default new Router({
       name: 'info',
       component: () => import('../view/info.vue')
     },
+    {
+      path: '/progress',
+      name: 'progress',
+      component: () => import('../view/progress.vue')
+    },
   ]
 })
