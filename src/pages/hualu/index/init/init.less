@@ -1,0 +1,51 @@
+@color_w: #fff;
+@color_t: rgba(0,0,0,0);
+@bg: #FD6260;    // 主题色
+@btn_c: #FD6260;
+@low_c: #E5E5E5;
+@dis: #a3a3a3;
+.btn_radius(@r: 3px) {
+  border-radius: @r
+}
+.btn {
+  outline: none;
+  padding: 0;
+  margin: 0;
+  // border: 1px solid @btn_c;
+  .btn_radius;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+// 主题按钮 红色背景 白色文字  按下相反
+.act_btn {
+  background: @btn_c;
+  color: @color_w;
+  &:active {
+    opacity: .8
+  }
+}
+// 置灰按钮
+.dis_btn {
+  background: @dis;
+  color: @color_w
+}
+// 主题按钮空心
+.empty_btn {
+  background: @color_w;
+  color: @btn_c;
+  &:active {
+    color: @color_w;
+    background: @btn_c
+  }
+}
+// 落地页成功按钮   绿色文字 按下绿色背景
+.res_btn {
+  color: #14b25a;
+  border: 1px solid #14b25a;
+  background: @color_w;
+  &:active {
+    background: #14b25a;
+    color: @color_w
+  }
+}

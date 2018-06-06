@@ -1,0 +1,82 @@
+@import "variable.less";
+
+body, html{
+  line-height: 1;
+  font-family: 'PingFang SC', 'STHeitiSC-Light', 'Helvetica-Light', arial, sans-serif, 'Droid Sans Fallback';;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  background: @color-background;
+  color: @color-text;
+  height: 100%;
+}
+
+/* 外层结构 */
+
+
+/* 加载动画 */
+.loading {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center;
+  background: #fff;
+  z-index: 999;
+  opacity: 1;
+  transition: opacity 0.4s;
+  -webkit-transition: opacity 0.4s;
+  -moz-transition: opacity 0.4s;
+  -ms-transition: opacity 0.4s;
+  &.hide{
+    opacity: 0;
+  }
+  &.load-move {
+    opacity: 0;
+  }
+  .loading-ele {
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    background: url("//r.51gjj.com/image/static/img_loading_colorful_yongBa.png") no-repeat;
+    background-size: 100%;
+    animation: loading 1s linear infinite;
+    -webkit-animation: loading 1s linear infinite;
+  }
+}
+    
+
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(-360deg);
+  }
+}
+
+/* vue动画 */
+.slide-down-enter, .slide-down-leave-to{
+  opacity: 0;
+  transform: translateY(-20%);
+}
+  
+.slide-down-enter-active, .slide-down-leave-active{
+  transition: all .4s;
+}
+  
+
+.opacity-enter, .opacity-leave-to{
+  opacity: 0;
+}
+.opacity-enter-active, .opacity-leave-active{
+  transition: opacity .4s;
+}

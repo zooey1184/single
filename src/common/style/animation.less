@@ -1,0 +1,123 @@
+// 按钮摇摆效果
+@keyframes shake_animate {
+  0 {
+    transform: rotate(0deg);
+    // transform-origin: 0 50%;
+  }
+  5% {
+    transform: rotate(2deg);
+    // transform-origin: 0 50%;
+  }
+  10% {
+    transform: rotate(-2deg);
+    // transform-origin: 0 50%;
+  }
+  15% {
+    transform: rotate(2deg);
+    // transform-origin:0 50%;
+  }
+  20% {
+    transform: rotate(-2deg);
+    // transform-origin: 0 50%;
+  }
+  25% {
+    transform: rotate(1deg);
+    // transform-origin:0 50%;
+  }
+  30% {
+    transform: rotate(-1deg);
+    // transform-origin: 0 50%;
+  }
+  35% {
+    transform: rotate(0deg);
+    // transform-origin: 0 50%;
+  }
+  100% {
+    transform: rotate(0deg);
+    // transform-origin: 0 50%;
+  }
+}
+
+// 左右轴缓动效果
+@keyframes linearLEFT {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(-12px, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+// 上下轴缓动效果
+@keyframes linearUP {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  50% {
+    transform: translate3d(0, 18px, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+// Y轴翻转
+.bounceCard-enter-active {
+  animation: bounce-in 4s;
+}
+.bounceCard-leave-active {
+  animation: bounce-in 2s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0) translate3d(0px, 0px, 0) rotateX(0deg) rotateY(0);
+  }
+  50% {
+    transform: scale(1.2) translate3d(0px, 0px, 100px) rotateX(0deg) rotateY(180deg);
+  }
+  100% {
+    transform: scale(1) translate3d(0px, 0px, 0) rotateX(0deg) rotateY(360deg);
+  }
+}
+
+// Z轴旋转
+@keyframes music_play {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+// 按钮摇摆效果
+@keyframes shakeCat {
+  0 {
+    transform: rotateY(0deg);
+  }
+  5% {
+    transform: rotateY(25deg);
+  }
+  10% {
+    transform: rotateY(-25deg);
+  }
+  15% {
+    transform: rotateY(15deg);
+  }
+  20% {
+    transform: rotateY(-15deg);
+  }
+  25% {
+    transform: rotateY(5deg);
+  }
+  30% {
+    transform: rotateY(-5deg);
+  }
+  35% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(0deg);
+  }
+}
