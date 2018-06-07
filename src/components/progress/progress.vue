@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "form-list",
+  name: "progress-list",
 }
 </script>
 

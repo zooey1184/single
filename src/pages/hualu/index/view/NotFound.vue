@@ -1,5 +1,5 @@
 <template lang="html">
-<fail tip="您要找的页面已经移到火星了"></fail>
+  <fail tip="您要找的页面已经移到火星了" @back="goback" :showBack="true"></fail>
 </template>
 
 <script>
@@ -16,6 +16,9 @@ export default {
       if(q.code=='404') {
         this.tip = '出错了'
       }
+    },
+    goback() {
+      this.$router.push('/home')
     }
   }
 }

@@ -1,18 +1,18 @@
 <template>
   <div class="split_pane_wrap">
-    <div class="line_split_contain" :style="{borderTopColor: `${border}`, width: `${width}px`}"></div>
+    <div class="line_split" :style="{borderTopColor: `${border}`, width: `${width}px`}"></div>
     <div class="splitPane_title">
       <slot>
         <p>title</p>
       </slot>
     </div>
-    <div class="line_split_contain" :style="{borderTopColor: `${border}`, width: `${width}px`}"></div>
+    <div class="line_split" :style="{borderTopColor: `${border}`, width: `${width}px`}"></div>
   </div>
 </template>
 
 <script>
 export default {
-  // name: "split-line",
+  name: "split-line",
   props: {
     border: {
       type: String,
@@ -26,12 +26,16 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang='less'>
 .split_pane_wrap {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
+  div {
+    display: inline-block;
+  }
 }
 .splitPane_title {
   margin: 0 15px;

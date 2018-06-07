@@ -17,14 +17,18 @@ export default new Router({
     {
       path: '/login',
       name: 'login',
-      component: () => import('../view/Login.vue')
+      component: () => import('../view/login/loginPane.vue')
     },
     {
-      path: '/register',
-      name: 'register',
-      component: () => import('../view/Register.vue')
+      path: '/forget',
+      name: 'forget',
+      component: () => import('../view/login/forget.vue')
     },
-    // 首页 =============================================home流程
+    {
+      path: '/more',
+      name: 'more',
+      component: () => import('../view/more.vue')
+    },
     {
       path: '/home',
       name: 'home',
@@ -40,5 +44,6 @@ export default new Router({
       name: 'progress',
       component: () => import('../view/progress.vue')
     },
+
   ]
 })

@@ -2,11 +2,13 @@
   <page bgWrap="#fff" :showHeader="false">
     <div>
       <div v-if="true">
-        <transition name='radiusNone'>
-          <div class="login_wrap" v-if="showLogin">
-            <h3 class="loginPage_title">欢迎登录</h3>
-          </div>
-        </transition>
+        <!-- <transition name='radiusNone'>
+
+
+        </transition> -->
+        <div class="login_wrap">
+          <h3 class="loginPage_title">欢迎登录</h3>
+        </div>
       </div>
       <div class="login_pane">
         <div v-if="login_phone">
@@ -34,6 +36,8 @@
         <split-line>
           <p>其他登陆方式</p>
         </split-line>
+
+
       </div>
     </div>
   </page>
@@ -58,7 +62,7 @@ export default {
 </script>
 
 <style lang="less">
-@import "../init/init.less";
+@import "../../init/init.less";
 .login_wrap {
   position: relative;
   background: #439df8;

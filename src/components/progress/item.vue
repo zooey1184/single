@@ -2,16 +2,21 @@
   <div class="progress_item">
     <div class="point_wrap">
       <div class="point_pane">
-        <div class="point" :style="{background: (getAct=='before'|| getAct=='cur')?bg:'#ddd'}"></div>
         <div class="line" v-if="showLine" :style="{background: getAct=='before'?bg:'#ddd'}"></div>
+        <div class="point" :style="{background: (getAct=='before'|| getAct=='cur')?bg:'#ddd'}"></div>
+        <div class="point_current" v-if="getAct=='cur'"></div>
       </div>
-      <div class="title">
-        <p>{{title}}</p>
+      <div class="title" :class="{act: getAct=='cur'}">
+        <slot name="title">
+          <p>{{title}}</p>
+        </slot>
       </div>
       <div class="line"></div>
     </div>
-    <div class="desc">
-      <p>{{desc}}</p>
+    <div class="desc" :style="{color: getAct=='cur'?actColor:'#888'}">
+      <slot name="desc">
+        <p>{{desc}}</p>
+      </slot>
     </div>
   </div>
 </template>
@@ -31,6 +36,10 @@ export default {
     bg: {
       type: String,
       default: "#17a7ee"
+    },
+    actColor: {
+      type: String,
+      default: "#333"
     }
   },
   mixins: [mixin],
@@ -42,7 +51,6 @@ export default {
 
       if(attr.active) {
         let a = attr.active
-        console.log(i, a);
         if(i<a) {
           p = 'before'
         }else if(i==a) {
@@ -66,14 +74,16 @@ export default {
   height: 60px;
   width: 100%;
   background: #fff;
+  color: #888;
+  font-size: 15px;
   .point_wrap {
     display: flex;
     align-items: center;
     padding: 0 20px
   }
   .point_pane {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     border-radius: 30px;
     display: inline-block;
     position: relative;
@@ -87,13 +97,23 @@ export default {
     }
     .line {
       position: absolute;
-      width: 5px;
+      width: 3px;
       height: 60px;
       content: "";
       top: 10px;
-      left: 8px;
+      left: 7px;
       background: rgb(5, 120, 255);
       z-index: -1
+    }
+    .point_current {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 30px;
+      background: #17a7ee;
+      opacity: 0.35;
+      transform: scale(1.5);
+      transform-origin: 50% 50%
     }
   }
   .title {
@@ -103,6 +123,10 @@ export default {
   .desc {
     display: inline-block;
     margin: 0 30px;
+  }
+  .act {
+    color: #333;
+    font-size: 18px;
   }
 }
 </style>

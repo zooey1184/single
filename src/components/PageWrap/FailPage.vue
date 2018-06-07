@@ -2,10 +2,11 @@
   <div class="PageWrap_fail_wrap">
     <div class="error_wrap">
       <slot>
-        <img src="//r.51gjj.com/image/static/icon-licai-page-kongsjsb.png" alt="">
+        <img src="//oo6gk8wuu.bkt.clouddn.com/update.png" alt="">
       </slot>
       <p class="tip">{{tip}}</p>
-      <p style="color: rgb(6, 178, 242); margin: 10px 0" @click="refreshFn">点击刷新</p>
+      <p style="color: rgb(6, 178, 242); margin: 10px 0" @click="backFn" v-if="showBack">返回</p>
+      <p style="color: rgb(6, 178, 242); margin: 10px 0" v-else @click="refreshFn">点击刷新</p>
     </div>
   </div>
 </template>
@@ -18,10 +19,17 @@ export default {
       type: String,
       default: "一定是哪里出错了，才让我们错过"
     },
+    showBack: {
+      type: Boolean,
+      default: false
+    }
   },
   methods:{
     refreshFn() {
       window.location.reload()
+    },
+    backFn() {
+      this.$emit('back')
     }
   }
 }
@@ -35,6 +43,7 @@ export default {
   height: 100%;
   left: 0;
   top: 0;
+  background: #fff;
 }
 .error_wrap {
   position: absolute;
@@ -42,7 +51,7 @@ export default {
   left: 10%;
   top: 100px;
   img {
-    width: 40%;
+    width: 100%;
     display: block;
     margin: 0 auto;
   }

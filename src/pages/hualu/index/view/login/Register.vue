@@ -2,22 +2,29 @@
   <page bgWrap="#fff" :showHeader="false">
     <div>
       <div v-if="true">
-        <transition name='radiusNone'>
-          <div class="login_wrap" v-if="showLogin">
-            <h3 class="loginPage_title">欢迎登录</h3>
-          </div>
+        <transition name='left_offset'>
+          <h3 class="loginPage_title" v-if="showLogin">欢迎注册</h3>
         </transition>
       </div>
       <div class="login_pane">
         <div v-if="login_phone">
           <div class="input_item">
+            <input type="text" placeholder="身份证号">
+          </div>
+          <div class="input_item">
+            <input type="text" placeholder="姓名">
+          </div>
+          <div class="input_item">
+            <input type="text" placeholder="密码">
+          </div>
+          <div class="input_item">
+            <input type="text" placeholder="确认密码">
+          </div>
+          <div class="input_item">
             <input type="text" placeholder="手机号">
           </div>
           <div class="input_item">
-            <input type="text" placeholder="手机验证码">
-            <div class="countDown_pane">
-              <count-down></count-down>
-            </div>
+            <input type="text" placeholder="邮箱">
           </div>
         </div>
         <div v-else>
@@ -29,11 +36,8 @@
           </div>
         </div>
 
-        <button class="btn login">登录</button>
-        <p class="login_pwd_tip">没有账号？去注册</p>
-        <split-line>
-          <p>其他登陆方式</p>
-        </split-line>
+        <button class="btn login">注册</button>
+
       </div>
     </div>
   </page>
@@ -41,10 +45,6 @@
 
 <script>
 export default {
-  components: {
-    countDown: ()=> import ('@/components/CountDown/CountDown.vue'),
-    splitLine: ()=> import ('@/components/AvgPane/SplitLine.vue')
-  },
   data: ()=>({
     showLogin: false,
     login_phone: true
@@ -58,32 +58,17 @@ export default {
 </script>
 
 <style lang="less">
-@import "../init/init.less";
+@import "../../init/init.less";
 .login_wrap {
-  position: relative;
-  background: #439df8;
-  height: 260px;
-  padding-top: 180px;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-  top: -150px;
-  box-sizing: border-box;
-}
-.radiusNone-enter-active, .radiusNone-leave-active {
-  transition: all 0.7s linear;
-}
-.radiusNone-enter, .radiusNone-leave-to {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  height: 200px;
-  padding-top: 100px;
+  height: 100px;
+  padding-top: 50px;
 }
 .loginPage_title {
   position: relative;
   font-size: 39px;
-  color: #fff;
+  color: #7370ff;
+  margin-top: 50px;
   margin-bottom: 50px;
-  text-align: center;
   &:after {
     content: "";
     color: #7370ff;
@@ -97,9 +82,8 @@ export default {
 .login_pane {
   position: absolute;
   width: 100%;
-  height: 180px;
   padding: 20px;
-  top: 180px;
+  top: 100px;
   left: 0;
   box-sizing: border-box;
   .input_item {
@@ -152,5 +136,13 @@ export default {
   &:active {
     color: rgb(252, 184, 21)
   }
+}
+/* 右进 */
+.left_offset-enter-active, .left_offset-leave-active {
+  transition: all 0.7s ease-out;
+}
+.left_offset-enter, .left_offset-leave-to {
+  transform: translateY(-50px);
+  opacity: 0;
 }
 </style>

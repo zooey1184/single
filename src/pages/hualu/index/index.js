@@ -10,10 +10,8 @@ import store from './store'
 
 import fastclick from 'fastclick'
 fastclick.attach(document.body)
-import { vConsole } from '@/common/js/vconsole'
-vConsole()
-// import { insertGrowingIo } from '@/common/js/growingio'
-// insertGrowingIo()
+// import { vConsole } from '@/common/js/vconsole'
+// vConsole()
 import reg from '@/plugin/VReg/VReg.js'
 reg(Vue)
 import Load from '@/plugin/load/load.js'
