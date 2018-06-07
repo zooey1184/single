@@ -1,6 +1,6 @@
 <template lang="html">
 <div>
-  <page title="首页" bgWrap="#fff">
+  <page title="首页" bgWrap="#fff" :showHeader="false">
     <div>
       <div class="banner"></div>
 

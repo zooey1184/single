@@ -19,6 +19,11 @@ export default new Router({
       name: 'login',
       component: () => import('../view/Login.vue')
     },
+    {
+      path: '/register',
+      name: 'register',
+      component: () => import('../view/Register.vue')
+    },
     // 首页 =============================================home流程
     {
       path: '/home',
