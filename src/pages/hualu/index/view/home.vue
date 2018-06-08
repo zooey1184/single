@@ -5,35 +5,36 @@
       <div class="banner"></div>
 
       <div class="home_item_wrap">
-        <div class="item">
+        <div class="item" @click="goUrl('/progress')">
           <i class="icon icon-info-query iconfont" style="color: rgb(40, 145, 221)"></i>
           <p class="item_font">个人信息</p>
         </div>
-        <div class="item">
+        <div class="item" @click="goUrl('/progress')">
           <i class="icon icon-yiyaobaojian iconfont" style="color: rgb(6, 176, 4)"></i>
           <p class="item_font">医保账户</p>
         </div>
-        <div class="item">
+        <div class="item" @click="goUrl('/progress')">
           <i class="icon icon-shebaorenzheng iconfont" style="color: rgb(255, 169, 3)"></i>
           <p class="item_font">参保证明</p>
         </div>
-        <div class="item">
+        <div class="item" @click="goUrl('/social_index')">
           <i class="icon icon-shebaochaxun iconfont" style="color: rgb(28, 161, 246)"></i>
           <p class="item_font">社保业务</p>
         </div>
-        <div class="item">
+        <div class="item" @click="goUrl('/progress')">
           <i class="icon icon-jindu iconfont" style="color: rgb(255, 116, 3)"></i>
           <p class="item_font">业务进度</p>
         </div>
-        <div class="item">
+        <div class="item" @click="goUrl('/info')">
           <i class="icon icon-gerenziliao iconfont" style="color: rgb(28, 161, 246)"></i>
           <p class="item_font">完善资料</p>
         </div>
-        <div class="item">
+        <div class="item" @click="goUrl('/more')">
           <i class="icon icon-shebao iconfont" style="color: rgb(255, 116, 3)"></i>
           <p class="item_font">社保证明</p>
         </div>
-        <div class="item">
+
+        <div class="item" @click="goUrl('/more')">
           <i class="icon icon-gengduo iconfont" style="color: rgb(176, 176, 176)"></i>
           <p class="item_font">更多</p>
         </div>
@@ -46,7 +47,16 @@
 <script>
 export default {
   name: "home-page",
-
+  components: {
+    waveWrap: ()=> import ('@/components/WaveWrap/WaveWrap.vue')
+  },
+  methods: {
+    goUrl(url) {
+      setTimeout(()=> {
+        this.$router.push(url)
+      }, 120)
+    }
+  }
 }
 </script>
 
@@ -68,7 +78,11 @@ export default {
     width: 20%;
     display: inline-block;
     text-align: center;
-    margin: 10px 5px;
+    margin: 10px 0;
+    padding: 5px;
+    &:active {
+      background: rgba(0,0,0,0.1);
+    }
   }
   .item_font {
     font-size: 13px;

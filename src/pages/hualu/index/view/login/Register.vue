@@ -2,7 +2,7 @@
   <page bgWrap="#fff" :showHeader="false">
     <div>
       <div v-if="true">
-        <transition name='left_offset'>
+        <transition name='top_offset'>
           <h3 class="loginPage_title" v-if="showLogin">欢迎注册</h3>
         </transition>
       </div>
@@ -37,13 +37,15 @@
         </div>
 
         <button class="btn login">注册</button>
-
+        <p class="login_pwd_tip" @click="goLogin">返回登录</p>
       </div>
     </div>
   </page>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   data: ()=>({
     showLogin: false,
@@ -53,11 +55,19 @@ export default {
     setTimeout(()=> {
       this.showLogin = true
     }, 50)
+  },
+  methods: {
+    ...mapActions([
+      'set_login'
+    ]),
+    goLogin() {
+      this.set_login('login')
+    }
   }
 }
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 @import "../../init/init.less";
 .login_wrap {
   height: 100px;
@@ -68,6 +78,7 @@ export default {
   font-size: 39px;
   color: #7370ff;
   margin-top: 50px;
+  text-align: center;
   margin-bottom: 50px;
   &:after {
     content: "";
@@ -138,10 +149,10 @@ export default {
   }
 }
 /* 右进 */
-.left_offset-enter-active, .left_offset-leave-active {
+.top_offset-enter-active, .top_offset-leave-active {
   transition: all 0.7s ease-out;
 }
-.left_offset-enter, .left_offset-leave-to {
+.top_offset-enter, .top_offset-leave-to {
   transform: translateY(-50px);
   opacity: 0;
 }

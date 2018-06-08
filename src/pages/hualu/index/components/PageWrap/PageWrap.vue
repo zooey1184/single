@@ -54,7 +54,7 @@ export default {
     },
     showHeader: {
       type: Boolean,
-      default: true
+      default: false
     },
     header_H: {
       type: Number,

@@ -1,14 +1,11 @@
 <template lang="html">
   <page bgWrap="#fff" :showHeader="false">
     <div>
-      <div v-if="true">
-        <!-- <transition name='radiusNone'>
+      <div>
+        <transition name="btm_offset">
+          <h3 class="loginPage_title_top" v-if="showLogin">欢迎登录</h3>
+        </transition>
 
-
-        </transition> -->
-        <div class="login_wrap">
-          <h3 class="loginPage_title">欢迎登录</h3>
-        </div>
       </div>
       <div class="login_pane">
         <div v-if="login_phone">
@@ -32,18 +29,23 @@
         </div>
 
         <button class="btn login">登录</button>
-        <p class="login_pwd_tip">没有账号？去注册</p>
-        <split-line>
-          <p>其他登陆方式</p>
-        </split-line>
-
-
+        <p class="login_pwd_tip">没有账号？
+          <span style="color: rgb(57, 160, 255)" @click="goRegister">去注册</span>
+        </p>
+        <div style="margin-top: 40px;">
+          <split-line>
+            <p>其他登陆方式</p>
+          </split-line>
+        </div>
+        <p class="social" @click="goSocial">{{loginType}}</p>
       </div>
     </div>
   </page>
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   components: {
     countDown: ()=> import ('@/components/CountDown/CountDown.vue'),
@@ -51,8 +53,26 @@ export default {
   },
   data: ()=>({
     showLogin: false,
-    login_phone: true
+    login_phone: true,
+    loginType: "社保账号登录"
   }),
+  methods: {
+    ...mapActions([
+      'set_login'
+    ]),
+    goRegister() {
+      this.set_login('register')
+    },
+    goSocial() {
+      if(this.login_phone) {
+        this.login_phone = false
+        this.loginType = '验证码登录'
+      }else {
+        this.login_phone = true
+        this.loginType = '社保账号登录'
+      }
+    }
+  },
   mounted() {
     setTimeout(()=> {
       this.showLogin = true
@@ -61,31 +81,14 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style scoped lang="less">
 @import "../../init/init.less";
-.login_wrap {
-  position: relative;
-  background: #439df8;
-  height: 260px;
-  padding-top: 180px;
-  border-bottom-left-radius: 50%;
-  border-bottom-right-radius: 50%;
-  top: -150px;
-  box-sizing: border-box;
-}
-.radiusNone-enter-active, .radiusNone-leave-active {
-  transition: all 0.7s linear;
-}
-.radiusNone-enter, .radiusNone-leave-to {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-  height: 200px;
-  padding-top: 100px;
-}
-.loginPage_title {
+
+.loginPage_title_top {
   position: relative;
   font-size: 39px;
-  color: #fff;
+  color: #7370ff;
+  margin-top: 80px;
   margin-bottom: 50px;
   text-align: center;
   &:after {
@@ -103,7 +106,7 @@ export default {
   width: 100%;
   height: 180px;
   padding: 20px;
-  top: 180px;
+  top: 140px;
   left: 0;
   box-sizing: border-box;
   .input_item {
@@ -152,9 +155,21 @@ export default {
   text-align: center;
   font-size: 12px;
   margin: 10px 0;
-  color: rgb(57, 160, 255);
+  color: #999;
   &:active {
     color: rgb(252, 184, 21)
   }
+}
+.social {
+  text-align: center;
+  font-size: 14px;
+  margin: 10px 0;
+}
+.btm_offset-enter-active, .btm_offset-leave-active {
+  transition: all 0.7s ease-out;
+}
+.btm_offset-enter, .btm_offset-leave-to {
+  transform: translateY(50px);
+  opacity: 0;
 }
 </style>

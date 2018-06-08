@@ -44,6 +44,10 @@ export default new Router({
       name: 'progress',
       component: () => import('../view/progress.vue')
     },
-
+    {
+      path: '/social_index',
+      name: 'social_index',
+      component: () => import('../view/business/index.vue')
+    },
   ]
 })

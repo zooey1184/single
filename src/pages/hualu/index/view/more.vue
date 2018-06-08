@@ -1,5 +1,5 @@
 <template lang="html">
-  <page>
+  <page :showHeader="false">
     <div class="">
       这里是更多页面
     </div>
