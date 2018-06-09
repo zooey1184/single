@@ -1,17 +1,17 @@
 <template lang="html">
-  <page title="社保业务经办">
+  <page title="个人参保证明打印">
     <div class="">
-      <div class="item blue_item" @click="goDetail(1)">
+      <div class="item yello_item" @click="goDetail(1)">
         <i class="icon iconfont icon-qiandai icon_font"></i>
         <p>参保新增</p>
         <i class="icon iconfont icon-qiandai icon_bg"></i>
       </div>
-      <div class="item blue_item" @click="goDetail(2)">
+      <div class="item yello_item" @click="goDetail(2)">
         <i class="icon iconfont icon-baoxian1 icon_font"></i>
         <p>参保新增</p>
         <i class="icon iconfont icon-baoxian1 icon_bg"></i>
       </div>
-      <div class="item blue_item" @click="goDetail(3)">
+      <div class="item yello_item" @click="goDetail(3)">
         <i class="icon iconfont icon-baoxianxiaoshou icon_font"></i>
         <p>参保新增</p>
         <i class="icon iconfont icon-baoxianxiaoshou icon_bg"></i>
@@ -24,7 +24,7 @@
 export default {
   methods: {
     goDetail(state) {
-      this.$router.push(`/social_detail?state=${state}`)
+
     }
   }
 }
@@ -54,7 +54,7 @@ export default {
   }
 }
 .yello_item {
-  .color_linear();
+  .color_linear(rgb(235, 207, 137), #ffb630);
 }
 .blue_item {
   .color_linear(#a4bdf5, #5281ec)
@@ -71,6 +71,6 @@ export default {
   right: -20px;
   bottom: 20px;
   font-size: 90px;
-  color: #6d96f0
+  color: #face5c
 }
 </style>

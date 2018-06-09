@@ -5,15 +5,15 @@
       <div class="banner"></div>
 
       <div class="home_item_wrap">
-        <div class="item" @click="goUrl('/progress')">
+        <div class="item" @click="goUrl('/personal_search')">
           <i class="icon icon-info-query iconfont" style="color: rgb(40, 145, 221)"></i>
           <p class="item_font">个人信息</p>
         </div>
-        <div class="item" @click="goUrl('/progress')">
+        <div class="item" @click="goUrl('/medcial_account')">
           <i class="icon icon-yiyaobaojian iconfont" style="color: rgb(6, 176, 4)"></i>
           <p class="item_font">医保账户</p>
         </div>
-        <div class="item" @click="goUrl('/progress')">
+        <div class="item" @click="goUrl('/print_index')">
           <i class="icon icon-shebaorenzheng iconfont" style="color: rgb(255, 169, 3)"></i>
           <p class="item_font">参保证明</p>
         </div>
@@ -29,7 +29,7 @@
           <i class="icon icon-gerenziliao iconfont" style="color: rgb(28, 161, 246)"></i>
           <p class="item_font">完善资料</p>
         </div>
-        <div class="item" @click="goUrl('/more')">
+        <div class="item" @click="goUrl('/social_prove')">
           <i class="icon icon-shebao iconfont" style="color: rgb(255, 116, 3)"></i>
           <p class="item_font">社保证明</p>
         </div>

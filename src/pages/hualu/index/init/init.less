@@ -49,3 +49,13 @@
     color: @color_w
   }
 }
+
+.color_linear(@left: #ffa620, @right: #ffe958) {
+  background: -webkit-linear-gradient(left top, @left, @right);
+  background: -o-linear-gradient(bottom right, @left, @right);
+  background: -moz-linear-gradient(bottom right, @left, @right);
+  background: linear-gradient(to bottom right, @left, @right);
+  &:active {
+    opacity: 0.8
+  }
+}
