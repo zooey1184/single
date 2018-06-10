@@ -1,19 +1,19 @@
 <template lang="html">
   <page title="社保业务经办">
     <div class="">
-      <div class="item blue_item" @click="goDetail(1)">
+      <div class="item orange_item" @click="goDetail(1)">
         <i class="icon iconfont icon-qiandai icon_font"></i>
         <p>参保新增</p>
         <i class="icon iconfont icon-qiandai icon_bg"></i>
       </div>
-      <div class="item blue_item" @click="goDetail(2)">
+      <div class="item orange_item" @click="goDetail(2)">
         <i class="icon iconfont icon-baoxian1 icon_font"></i>
-        <p>参保新增</p>
+        <p>续保业务</p>
         <i class="icon iconfont icon-baoxian1 icon_bg"></i>
       </div>
-      <div class="item blue_item" @click="goDetail(3)">
+      <div class="item orange_item" @click="goDetail(3)">
         <i class="icon iconfont icon-baoxianxiaoshou icon_font"></i>
-        <p>参保新增</p>
+        <p>参保中断</p>
         <i class="icon iconfont icon-baoxianxiaoshou icon_bg"></i>
       </div>
     </div>
@@ -24,7 +24,7 @@
 export default {
   methods: {
     goDetail(state) {
-      this.$router.push(`/social_detail?state=${state}`)
+      this.$router.push(`/progress_detail?state=${state}`)
     }
   }
 }
@@ -60,7 +60,7 @@ export default {
   .color_linear(#a4bdf5, #5281ec)
 }
 .orange_item {
-  .color_linear(rgb(247, 85, 16), rgb(251, 223, 77))
+  .color_linear(#fbb0b1, #f86566)
 }
 .icon_font {
   font-size: 20px;
@@ -71,6 +71,6 @@ export default {
   right: -20px;
   bottom: 20px;
   font-size: 90px;
-  color: #6d96f0
+  color: #f97e80
 }
 </style>

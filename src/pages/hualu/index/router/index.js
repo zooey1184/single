@@ -39,15 +39,52 @@ export default new Router({
       name: 'info',
       component: () => import('../view/info.vue')
     },
+    // 业务进度
     {
       path: '/progress',
       name: 'progress',
-      component: () => import('../view/progress.vue')
+      component: () => import('../view/progress/index.vue')
     },
+    {
+      path: '/progress_detail',
+      name: 'progress_detail',
+      component: () => import('../view/progress/detail.vue')
+    },
+    // 业务办理
     {
       path: '/social_index',
       name: 'social_index',
       component: () => import('../view/business/index.vue')
+    },
+    {
+      path: '/social_detail',
+      name: 'social_detail',
+      component: () => import('../view/business/detail.vue')
+    },
+    {
+      path: '/social_prove',
+      name: 'social_prove',
+      component: () => import('../view/business/prove.vue'),
+      meta: {
+        title: "社保证明验证"
+      }
+    },
+    // 个人信息查询
+    {
+      path: '/personal_search',
+      name: 'personal_search',
+      component: () => import('../view/person/personal.vue')
+    },
+    {
+      path: '/medcial_account',
+      name: 'medcial_account',
+      component: () => import('../view/medcial/account_search.vue')
+    },
+    // 个人信息打印
+    {
+      path: '/print_index',
+      name: 'print_index',
+      component: () => import('../view/print/index.vue')
     },
   ]
 })
