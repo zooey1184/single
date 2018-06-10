@@ -2,6 +2,7 @@
   <page title="社保业务经办">
     <div class="">
       <div class="item">
+
         <i class="icon iconfont icon-baoxian"></i>
         <p>参保新增</p>
       </div>
@@ -29,10 +30,12 @@ export default {
   left: 10%;
   height: 140px;
   border-radius: 10px;
-  background: #ddd;
+  background: #fff;
+  box-shadow: 0 0 10px #ddd;
   padding: 20px;
   box-sizing: border-box;
-  margin: 10px 0;
+  margin: 20px 0;
+
   p {
     font-size: 24px;
     font-family: "微软雅黑";
@@ -40,8 +43,8 @@ export default {
     display: inline-block;
   }
 }
-.icon-baoxian {
-  font-size: 50px;
+.icon {
+  font-size: 35px;
   color: green
 }
 </style>
