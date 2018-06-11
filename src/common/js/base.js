@@ -163,7 +163,7 @@ export function timeFormate () {
       let min = time.getMinutes()<10 ? `0${time.getMinutes()}` : time.getMinutes()
       let sec = time.getSeconds()<10 ? `0${time.getSeconds()}` : time.getSeconds()
       let formate = `${y}${split}${m}${split}${d}`
-      if(date===0) {
+      if(date===1) {
         return formate
       }else {
         formate = `${y}${split}${m}${split}${d} ${h}:${min}:${sec}`

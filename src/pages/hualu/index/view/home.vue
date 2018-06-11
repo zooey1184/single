@@ -5,7 +5,7 @@
       <div class="banner"></div>
 
       <div class="home_item_wrap">
-        <div class="item" @click="goUrl('/personal_search')">
+        <div class="item" @click="goUrl('/personal_info')">
           <i class="icon icon-info-query iconfont" style="color: rgb(40, 145, 221)"></i>
           <p class="item_font">个人信息</p>
         </div>
@@ -56,6 +56,9 @@ export default {
         this.$router.push(url)
       }, 120)
     }
+  },
+  created() {
+    window.localStorage.setItem('id', "330621196609143334")
   }
 }
 </script>
@@ -75,7 +78,7 @@ export default {
   flex-wrap: wrap;
   margin-top: 5px;
   .item {
-    width: 20%;
+    width: 21%;
     display: inline-block;
     text-align: center;
     margin: 10px 0;

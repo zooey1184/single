@@ -4,7 +4,7 @@
       <slot>
         <img src="//oo6gk8wuu.bkt.clouddn.com/update.png" alt="">
       </slot>
-      <p class="tip">{{tip}}</p>
+      <p class="tip">{{tip==""?"请求出错，请稍后再试": tip}}</p>
       <p style="color: rgb(6, 178, 242); margin: 10px 0" @click="backFn" v-if="showBack">返回</p>
       <p style="color: rgb(6, 178, 242); margin: 10px 0" v-else @click="refreshFn">点击刷新</p>
     </div>
@@ -17,7 +17,7 @@ export default {
   props: {
     tip: {
       type: String,
-      default: "一定是哪里出错了，才让我们错过"
+      default: "请求出错，请稍后再试"
     },
     showBack: {
       type: Boolean,

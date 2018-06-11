@@ -2,7 +2,7 @@
   <div class="tip__wrap_pane">
     <div class="tip__wrap_pane_contain">
       <slot>
-        <img src="//r.51gjj.com/resource/hualishu/images/history_none.png" alt="">
+        <img src="//oo6gk8wuu.bkt.clouddn.com/ic_noting_hint.png" alt="">
       </slot>
       <slot name='tip'>
         <p>{{title}}</p>

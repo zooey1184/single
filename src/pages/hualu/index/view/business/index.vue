@@ -71,6 +71,6 @@ export default {
   right: -20px;
   bottom: 20px;
   font-size: 90px;
-  color: #6d96f0
+  color: #80a2f1
 }
 </style>

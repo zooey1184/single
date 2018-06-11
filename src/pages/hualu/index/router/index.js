@@ -71,9 +71,14 @@ export default new Router({
     },
     // 个人信息查询
     {
+      path: '/personal_info',
+      name: 'personal_info',
+      component: () => import('../view/person/personal.vue')
+    },
+    {
       path: '/personal_search',
       name: 'personal_search',
-      component: () => import('../view/person/personal.vue')
+      component: () => import('../view/person/search.vue')
     },
     {
       path: '/medcial_account',

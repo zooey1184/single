@@ -23,7 +23,7 @@
       <loading-page></loading-page>
     </div>
     <div class="pageWrap_wrap" v-show="(state=='fail' || state=='error')" :style="{background: '#fff'}" :key="2">
-      <fail-page></fail-page>
+      <fail-page :tip="tip"></fail-page>
     </div>
   </transition-group>
 </div>
@@ -80,7 +80,8 @@ export default {
         color: '#fff'
       })
     },
-    title: [String, Number]
+    title: [String, Number],
+    tip: String
   },
   watch: {
     scrollTo: function(n, o) {
@@ -157,7 +158,7 @@ export default {
     },
   },
   created() {
-    document.title = this.title || "花鹿"
+    document.title = this.title || "社保"
     let obj = {
       top: 0,
       left: 0,

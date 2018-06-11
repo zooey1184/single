@@ -7,7 +7,7 @@ ajaxPlugin.install = function(Vue, options = {}) {
       let form = new FormData()
       let arr = []
       let str = ''
-      for (let a of Object.keys(params)) {
+      for (let a in params) {
         arr.push(a)
       }
       let arrSort = arr.sort()
@@ -69,7 +69,9 @@ ajaxPlugin.install = function(Vue, options = {}) {
         }
       } else if (options.type === 'POST') {
         // post方式
-        let data = options.requestDataType === 'string' ? JSON.stringify(options.data) : options.data
+        let d = formate(options.data)
+        console.log(d);
+        let data = options.requestDataType === 'string' ? JSON.stringify(options.data) : d
         // let data = formate(options.data, 'POST')
         request.open('POST', options.url, options.async)
         request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
