@@ -67,4 +67,8 @@ export default {
 .router-fade-enter, .router-fade-leave-to {
   opacity: 0;
 }
+.right_align {
+  text-align: right;
+  width: 100%;
+}
 </style>

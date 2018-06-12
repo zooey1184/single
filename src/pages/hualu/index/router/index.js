@@ -57,7 +57,7 @@ export default new Router({
       component: () => import('../view/business/index.vue')
     },
     {
-      path: '/social_detail',
+      path: '/social_detail/:state',
       name: 'social_detail',
       component: () => import('../view/business/detail.vue')
     },
@@ -79,6 +79,11 @@ export default new Router({
       path: '/personal_search',
       name: 'personal_search',
       component: () => import('../view/person/search.vue')
+    },
+    {
+      path: '/personal_detail',
+      name: 'personal_detail',
+      component: () => import('../view/person/detail.vue')
     },
     {
       path: '/medcial_account',

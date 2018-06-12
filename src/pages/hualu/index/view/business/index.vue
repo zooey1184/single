@@ -1,5 +1,5 @@
 <template lang="html">
-  <page title="社保业务经办">
+  <page title="社保业务经办" :state="pageState">
     <div class="">
       <div class="item blue_item" @click="goDetail(1)">
         <i class="icon iconfont icon-qiandai icon_font"></i>
@@ -21,11 +21,32 @@
 </template>
 
 <script>
+import path from '@/api/path'
+import dataDeal from '../../init/config'
+import $ from 'jquery'
+import {mapActions} from 'vuex'
+
 export default {
+  data: ()=> ({
+    pageData: null,
+    pageState: 'success',
+    tip: ""
+  }),
   methods: {
+    ...mapActions([
+      'set_business'
+    ]),
     goDetail(state) {
-      this.$router.push(`/social_detail?state=${state}`)
-    }
+      if(state==1) {
+        this.set_business('个人新参保')
+      }else if(state==2) {
+        this.set_business('个人续保')
+      }else {
+        this.set_business('个人停保')
+      }
+      this.$router.push(`/social_detail/${state}`)
+
+    },
   }
 }
 </script>
