@@ -5,7 +5,7 @@
     <div>
       <div v-if="pageData">
         <p class="pane_title">个人信息</p>
-        <form-list name="rightOffset">
+        <form-list name="toastSlideUp">
           <form-item title="姓名" :width="120" :showRight="false">
             <p class="account_pane">{{pageData[0].psname}}</p>
           </form-item>
@@ -23,7 +23,7 @@
           </form-item>
         </form-list>
       </div>
-      <transition name="rightOffset">
+      <transition name="toastSlideUp">
         <div v-if="pageData && showPage" style="padding: 20px 0;">
           <v-table
             :width="w"
@@ -36,10 +36,6 @@
     </div>
     <div slot="footer" class="footer_wrap">
       <button class="btn footer_btn" @click="searchFn">个人缴费明细</button>
-      <div class="btn_group">
-        <button class="btn text_btn">上一页</button>
-        <button class="btn text_btn">下一页</button>
-      </div>
     </div>
   </page>
 </div>
@@ -99,7 +95,7 @@ export default {
               }, 20)
               setTimeout(()=> {
                 self.showPage = true
-              }, 800)
+              }, 900)
             }else if(code==="-1") {
               self.$toast.show(ret[0].retmsg)
               self.pageState = 'error'
@@ -143,7 +139,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: 0 20px;
+  padding: 0 10px;
   box-sizing: border-box;
 }
 .btn {
@@ -155,23 +151,13 @@ export default {
 }
 .footer_btn {
   background: rgb(31, 126, 238);
+  width: 94%;
+  display: block;
+  margin: 0 auto;
   color: #fff;
   padding: 0 10px;
   &:active {
     opacity: 0.8
-  }
-}
-.btn_group {
-  display: inline-block;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.text_btn {
-  background: rgba(0,0,0,0);
-  min-width: 85px;
-  &:active {
-    background: #ddd
   }
 }
 </style>
