@@ -28,10 +28,13 @@ var EXPORT = merge(baseWebpackConfig, {
     new webpack.NoEmitOnErrorsPlugin(),
     // https://github.com/ampedandwired/html-webpack-plugin
     new FriendlyErrorsPlugin(),
-    new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('./vendor-manifest.json')
-    }),
+    // 预打包处理
+    // new webpack.DllReferencePlugin({
+    //   context: __dirname,
+    //   manifest: require('./vendor-manifest.json')
+    // }),
+
+    
     // new HtmlWebpackPlugin({
     //   filename: 'index.html',
     //   template: 'index.html',

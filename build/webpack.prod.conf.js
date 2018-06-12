@@ -100,11 +100,15 @@ const webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    // 预打包处理
-    new webpack.DllReferencePlugin({
-      context: __dirname,
-      manifest: require('./vendor-manifest.json')
-    }),
+
+    // ************************预打包处理**********************************
+    // new webpack.DllReferencePlugin({
+    //   context: __dirname,
+    //   manifest: require('./vendor-manifest.json')
+    // }),
+    // *********************************************************************
+
+    
     // 添加缓存机制
     // new Manifest({
     //   cache: [
