@@ -16,7 +16,7 @@
         <button v-if="showPage" class="btn_prove" @click="submitFn">验证</button>
       </transition>
 
-      <div class="img_pane">
+      <div class="img_pane" v-if="showImg">
         <img :src="img" alt="">
       </div>
     </div>
@@ -87,8 +87,8 @@ export default {
     submitFn() {
       if (this.type !== "") {
         if (this.num !== "") {
-          // this.img = `${this.preImg}${this.type}-${this.num}.jpg`
-          this.img = "http://oo6gk8wuu.bkt.clouddn.com/default_head.png"
+          this.img = `${this.preImg}${this.type}-${this.num}.jpg`
+          // this.img = "http://oo6gk8wuu.bkt.clouddn.com/default_head.png"
           if (this.validateImage(this.img)) {
             this.showImg = true
           } else {

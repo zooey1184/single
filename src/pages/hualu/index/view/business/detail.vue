@@ -1,6 +1,6 @@
 <template lang="html">
-<div class="">
-  <page>
+<div>
+  <page :showFooter="true">
     <div>
       <form-list name="rightOffset">
         <form-item title="身份证号" :index="0" :width="100">
@@ -25,6 +25,10 @@
           <input type="text" placeholder="请输入身份证号" name="" value="">
         </form-item>
       </form-list>
+    </div>
+
+    <div slot="footer" class="footer_wrap">
+      <button class="btn footer_btn" @click="submitFn">提交</button>
     </div>
   </page>
 </div>
@@ -54,11 +58,12 @@ export default {
   },
   watch: {
     get_business: function(n, o) {
-      console.log(n);
+      this.getData()
     }
   },
   methods: {
     getData() {
+      let d = new Date()
       let self = this
       let s = dataDeal.submitJson({
         jyh: "GR1040",
@@ -66,7 +71,7 @@ export default {
         iscode: window.localStorage.getItem('id'),
         psname: window.sessionStorage.getItem('psname'),
         gnmc: this.get_business,
-        // ptywlsh:
+        ptywlsh: d.getTime()
       })
       let data = {
         inmsg: s
@@ -91,7 +96,7 @@ export default {
               setTimeout(()=> {
                 self.showPage = true
               }, 900)
-            }else if(code==="-1") {
+            }else if(code=="-1") {
               self.$toast.show(ret[0].retmsg)
               self.pageState = 'error'
               self.tip = ret[0].retmsg || ""
@@ -104,6 +109,9 @@ export default {
           }
         }
       })
+    },
+    submitFn() {
+
     }
   },
   created() {
@@ -112,5 +120,34 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="less">
+.footer_wrap {
+  background: #fff;
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.btn {
+  display: inline-block;
+  height: 42px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+}
+.footer_btn {
+  background: rgb(31, 126, 238);
+  width: 94%;
+  display: block;
+  margin: 0 auto;
+  color: #fff;
+  padding: 0 10px;
+  &:active {
+    opacity: 0.8
+  }
+}
 </style>

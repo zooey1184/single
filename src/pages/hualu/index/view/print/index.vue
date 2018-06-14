@@ -3,17 +3,17 @@
     <div class="">
       <div class="item yello_item" @click="goDetail(1)">
         <i class="icon iconfont icon-qiandai icon_font"></i>
-        <p>参保新增</p>
+        <p>社会保险参保证明</p>
         <i class="icon iconfont icon-qiandai icon_bg"></i>
       </div>
       <div class="item yello_item" @click="goDetail(2)">
         <i class="icon iconfont icon-baoxian1 icon_font"></i>
-        <p>参保新增</p>
+        <p>历年养老参保证明</p>
         <i class="icon iconfont icon-baoxian1 icon_bg"></i>
       </div>
       <div class="item yello_item" @click="goDetail(3)">
         <i class="icon iconfont icon-baoxianxiaoshou icon_font"></i>
-        <p>参保新增</p>
+        <p>养老待遇证明</p>
         <i class="icon iconfont icon-baoxianxiaoshou icon_bg"></i>
       </div>
     </div>
@@ -24,7 +24,22 @@
 export default {
   methods: {
     goDetail(state) {
-
+      if(state==1) {
+        this.go_sh()
+      }else if(state==2) {
+        this.go_ln()
+      }else if(state==3) {
+        this.go_yl()
+      }
+    },
+    go_sh() {
+      this.$router.push('/print_sh')
+    },
+    go_ln() {
+      this.$router.push('/print_ln')
+    },
+    go_yl() {
+      this.$router.push('/print_yl')
     }
   }
 }

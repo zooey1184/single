@@ -8,12 +8,12 @@
       </div>
       <div class="item blue_item" @click="goDetail(2)">
         <i class="icon iconfont icon-baoxian1 icon_font"></i>
-        <p>参保新增</p>
+        <p>个人续保</p>
         <i class="icon iconfont icon-baoxian1 icon_bg"></i>
       </div>
       <div class="item blue_item" @click="goDetail(3)">
         <i class="icon iconfont icon-baoxianxiaoshou icon_font"></i>
-        <p>参保新增</p>
+        <p>个人停保</p>
         <i class="icon iconfont icon-baoxianxiaoshou icon_bg"></i>
       </div>
     </div>

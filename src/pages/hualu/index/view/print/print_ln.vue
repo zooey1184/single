@@ -1,57 +1,31 @@
-<template>
-<div>
+<template lang="html">
+<div class="">
   <page>
-    <div>
-      <div class="progress_wrap">
-        <v-progress :active="3">
-          <item title="hello" desc='howrd' :index="1"></item>
-          <item title="hello" desc='howrd' :index="2"></item>
-          <item title="hello" desc='howrd' :index="3"></item>
-          <item title="hello" desc='howrd' :index="4" :showLine="false"></item>
-        </v-progress>
-      </div>
+    <div class="">
+      历年
     </div>
   </page>
 </div>
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
 import path from '@/api/path'
 import dataDeal from '../../init/config'
 import $ from 'jquery'
 
 export default {
-  components: {
-    vProgress: ()=> import ('@/components/progress/progress.vue'),
-    item: ()=> import ('@/components/progress/item.vue')
-  },
   data: ()=> ({
     pageData: null,
-    pageState: 'success',
-    tip: "",
-    state: ""
+    showPage: false,
+    pageState: 'loading'
   }),
-  computed: {
-    ...mapGetters([
-      'get_business'
-    ])
-  },
-  watch: {
-    get_business: function(n, o) {
-      this.getData()
-    }
-  },
   methods: {
     getData() {
-      let d = new Date()
       let self = this
       let s = dataDeal.submitJson({
-        jyh: "GR1051",
+        jyh: "GR1062",
         // iscode: "350921199101200012",
-        iscode: window.localStorage.getItem('id'),
-        psname: window.sessionStorage.getItem('psname'),
-        ptywlsh: d.getTime()
+        iscode: window.localStorage.getItem('id')
       })
       let data = {
         inmsg: s
@@ -90,9 +64,6 @@ export default {
         }
       })
     },
-    submitFn() {
-
-    }
   },
   created() {
     this.getData()
@@ -100,14 +71,5 @@ export default {
 }
 </script>
 
-<style lang="less">
-.progress_wrap {
-  position: relative;
-  width: 94%;
-  left: 3%;
-  border-radius: 5px;
-  overflow: hidden;
-  margin: 30px 0;
-  box-shadow: 0 0 15px #ddd;
-}
+<style lang="css">
 </style>

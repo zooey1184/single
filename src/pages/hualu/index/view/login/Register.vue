@@ -8,23 +8,23 @@
       </div>
       <div class="login_pane">
         <div v-if="login_phone">
-          <div class="input_item">
-            <input type="text" placeholder="身份证号">
+          <div class="input_item" v-reg:register="{type: 'idCard', test: pageData.iscode, tag: 'iscode'}">
+            <input type="text" placeholder="身份证号" v-model="pageData.iscode">
           </div>
-          <div class="input_item">
-            <input type="text" placeholder="姓名">
+          <div class="input_item" v-reg:register="{type: 'realName', test: pageData.psname, tag: 'psname'}">
+            <input type="text" placeholder="姓名" v-model="pageData.psname">
           </div>
-          <div class="input_item">
-            <input type="text" placeholder="密码">
+          <div class="input_item" v-reg:register="{type: 'password', test: pageData.password, tag: 'password'}">
+            <input type="password" placeholder="密码" v-model="pageData.password">
           </div>
-          <div class="input_item">
-            <input type="text" placeholder="确认密码">
+          <div class="input_item" v-reg:register="{rule: pageData.password, msg: '两次密码不一致', test: pwd, test: pwd, tag: 'pwd'}">
+            <input type="password" placeholder="确认密码" v-model="pwd">
           </div>
-          <div class="input_item">
-            <input type="text" placeholder="手机号">
+          <div class="input_item" v-reg:register="{type: 'tel', test: pageData.phone, tag: 'tel'}">
+            <input type="text" placeholder="手机号" v-model="pageData.phone">
           </div>
-          <div class="input_item">
-            <input type="text" placeholder="邮箱">
+          <div class="input_item" v-reg:register="{type: 'email', test: pageData.email, tag: 'email'}">
+            <input type="text" placeholder="邮箱" v-model="pageData.email">
           </div>
         </div>
         <div v-else>
@@ -36,7 +36,7 @@
           </div>
         </div>
 
-        <button class="btn login">注册</button>
+        <button class="btn login" @click="submitFn" v-reg:register.check="{check: check}">注册</button>
         <p class="login_pwd_tip" @click="goLogin">返回登录</p>
       </div>
     </div>
@@ -45,11 +45,24 @@
 
 <script>
 import {mapActions} from 'vuex'
+import path from '@/api/path'
+import dataDeal from '../../init/config'
+import $ from 'jquery'
+import {check} from '@/plugin/VReg/rule'
 
 export default {
   data: ()=>({
     showLogin: false,
-    login_phone: true
+    login_phone: true,
+    check: false,
+    pageData: {
+      iscode: "",
+      psname: "",
+      password: "",
+      phone: "",
+      email: ""
+    },
+    pwd: ""
   }),
   mounted() {
     setTimeout(()=> {
@@ -62,6 +75,16 @@ export default {
     ]),
     goLogin() {
       this.set_login('login')
+    },
+    submitFn() {
+      this.check = true
+      if(check('register')) {
+        console.log('ok');
+      }else {
+        setTimeout(()=> {
+          this.check = false
+        }, 50)
+      }
     }
   }
 }

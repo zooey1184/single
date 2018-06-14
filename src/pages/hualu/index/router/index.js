@@ -96,5 +96,20 @@ export default new Router({
       name: 'print_index',
       component: () => import('../view/print/index.vue')
     },
+    {
+      path: '/print_sh',
+      name: 'print_sh',
+      component: () => import('../view/print/print_sh.vue')
+    },
+    {
+      path: '/print_ln',
+      name: 'print_ln',
+      component: () => import('../view/print/print_ln.vue')
+    },
+    {
+      path: '/print_yl',
+      name: 'print_yl',
+      component: () => import('../view/print/print_yl.vue')
+    },
   ]
 })

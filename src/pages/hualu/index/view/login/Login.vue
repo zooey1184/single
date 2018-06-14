@@ -21,23 +21,23 @@
         </div>
         <div v-else>
           <div class="input_item">
-            <input type="text" placeholder="社保账号（身份证号）">
+            <input type="text" placeholder="社保账号（身份证号）" v-model="iscode">
           </div>
           <div class="input_item">
-            <input type="text" placeholder="请输入密码">
+            <input type="password" placeholder="请输入密码" v-model="pwd">
           </div>
         </div>
 
-        <button class="btn login">登录</button>
+        <button class="btn login" @click="submitFn">登录</button>
         <p class="login_pwd_tip">没有账号？
           <span style="color: rgb(57, 160, 255)" @click="goRegister">去注册</span>
         </p>
-        <div style="margin-top: 40px;">
+        <!-- <div style="margin-top: 40px;">
           <split-line>
             <p>其他登陆方式</p>
           </split-line>
         </div>
-        <p class="social" @click="goSocial">{{loginType}}</p>
+        <p class="social" @click="goSocial">{{loginType}}</p> -->
       </div>
     </div>
   </page>
@@ -45,6 +45,9 @@
 
 <script>
 import {mapActions} from 'vuex'
+import path from '@/api/path'
+import dataDeal from '../../init/config'
+import $ from 'jquery'
 
 export default {
   components: {
@@ -53,8 +56,10 @@ export default {
   },
   data: ()=>({
     showLogin: false,
-    login_phone: true,
-    loginType: "社保账号登录"
+    login_phone: false,
+    loginType: "社保账号登录",
+    iscode: "",
+    pwd: ""
   }),
   methods: {
     ...mapActions([
@@ -71,6 +76,65 @@ export default {
         this.login_phone = true
         this.loginType = '社保账号登录'
       }
+    },
+    submitFn() {
+      if(this.login_phone) {
+        // 验证码方式login
+      }else {
+        // 社保账号登录
+        if(this.iscode!=="") {
+          if(this.pwd!==""){
+            this.loginFn()
+          }else {
+            this.$toast.show("密码不能为空")
+          }
+        }else {
+          this.$toast.show('账号不能为空')
+        }
+      }
+    },
+    loginFn() {
+      let self = this
+      let s = dataDeal.submitJson({
+        jyh: "DL1070",
+        // iscode: "350921199101200012",
+        iscode: this.iscode,
+        password: this.pwd,
+        yzfs: 'sb'
+      })
+      let data = {
+        inmsg: s
+      }
+      $.ajax({
+        url: path().getInfo,
+        data: data,
+        type: 'post',
+        success: r=> {
+          let ret = dataDeal.formJson(r)
+          let code = ret[0].retcode
+          if(code) {
+            if(code==="0") {
+              // 成功
+              window.localStorage.setItem('id', self.iscode)
+              window.sessionStorage.setItem('iscode', self.iscode)
+              self.$toast.show({
+                position: 'middle',
+                type: 'success',
+                message: "登录成功"
+              })
+              setTimeout(()=> {
+                self.$router.push('/home')
+              }, 200)
+            }else if(code=="-1") {
+              self.$toast.show(ret[0].retmsg)
+            }else {
+              return
+            }
+          }else {
+            self.pageState = 'error'
+          }
+        }
+      })
     }
   },
   mounted() {

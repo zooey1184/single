@@ -21,11 +21,23 @@
 </template>
 
 <script>
+import {mapActions} from 'vuex'
+
 export default {
   methods: {
+    ...mapActions([
+      'set_business'
+    ]),
     goDetail(state) {
+      if(state==1) {
+        this.set_business('个人新参保')
+      }else if(state==2) {
+        this.set_business('个人续保')
+      }else {
+        this.set_business('个人停保')
+      }
       this.$router.push(`/progress_detail?state=${state}`)
-    }
+    },
   }
 }
 </script>

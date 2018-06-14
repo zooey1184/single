@@ -128,7 +128,7 @@ export default {
                   // 成功
                   self.set_personData(ret)
                   self.$router.push('/personal_detail')
-                } else if (code === "-1") {
+                } else if (code == "-1") {
                   self.$toast.show(ret[0].retmsg)
                   self.pageState = 'error'
                   self.tip = ret[0].retmsg || ""
