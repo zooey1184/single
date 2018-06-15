@@ -26,10 +26,11 @@ export default {
     if(t.match(/\$\$\$\$/g)) {
       s = s.replace("$$$$", "")
     }
-    console.log(s);
     try {
       s = JSON.parse(s)
-      console.log(s);
+      for(let i of s) {
+        console.log(JSON.stringify(i));
+      }
     } catch (e) {
       console.log(e);
     } finally {
