@@ -26,8 +26,8 @@ var build = {
   env: require('./prod.env'),
   assetsRoot: path.resolve(__dirname, '../dist'),
   assetsSubDirectory: "",
-  // assetsPublicPath: `${window.location.host}/act/home/huodong/`,
-  assetsPublicPath: `https://r.51gjj.com/resource/loan/${assets_PublicPath}/${assetsZoon}`,
+  assetsPublicPath: ``,
+  // assetsPublicPath: `https://r.51gjj.com/resource/loan/${assets_PublicPath}/${assetsZoon}`,
   productionSourceMap: false,
   // Gzip off by default as many popular static hosts such as
   // Surge or Netlify already gzip all static assets for you.
