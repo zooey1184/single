@@ -3,11 +3,11 @@
   <page>
     <div>
       <div class="progress_wrap">
-        <v-progress :active="3">
-          <item title="hello" desc='howrd' :index="1"></item>
-          <item title="hello" desc='howrd' :index="2"></item>
-          <item title="hello" desc='howrd' :index="3"></item>
-          <item title="hello" desc='howrd' :index="4" :showLine="false"></item>
+        <v-progress :active="active">
+          <item title="开始" :desc='tip.start' :index="1"></item>
+          <item title="业务受理" :desc='tip.sec' :index="2"></item>
+          <item title="业务办理" :desc='tip.thr' :index="3"></item>
+          <item title="完成" :desc='tip.last' :index="4" :showLine="false"></item>
         </v-progress>
       </div>
     </div>
@@ -29,8 +29,14 @@ export default {
   data: ()=> ({
     pageData: null,
     pageState: 'success',
-    tip: "",
-    state: ""
+    tip: {
+      start: "",
+      sec: "",
+      thr: "",
+      last: ""
+    },
+    state: "",
+    active: 1,
   }),
   computed: {
     ...mapGetters([
@@ -46,49 +52,60 @@ export default {
     getData() {
       let d = new Date()
       let self = this
+      // let s = dataDeal.submitJson({
+      //   jyh: "GR1051",
+      //   // iscode: "342901198010101756",
+      //   iscode: window.localStorage.getItem('id'),
+      //   psname: window.sessionStorage.getItem('psname'),
+      //   ptywlsh: d.getTime()
+      // })
       let s = dataDeal.submitJson({
-        jyh: "GR1051",
-        // iscode: "350921199101200012",
-        iscode: window.localStorage.getItem('id'),
-        psname: window.sessionStorage.getItem('psname'),
-        ptywlsh: d.getTime()
+        iscode: "342901198010101756",
+        psname: "姚振东",
+        ptywlsh: "201704260002",
+        gnmc: this.get_business
+        // gnmc: "this.get_business"
       })
       let data = {
         inmsg: s
       }
       $.ajax({
-        url: path().getInfo,
+        url: path().progress,
         data: data,
         type: 'post',
         success: r=> {
-          let ret = dataDeal.formJson(r)
-          let code = ret[0].retcode
-          if(code) {
-            if(code==="0") {
-              // 成功
-              self.pageData = ret
-              if(ret[0].psname) {
-                window.sessionStorage.setItem('psname', ret[0].psname)
-              }
-              setTimeout(()=> {
-                self.pageState = 'success'
-              }, 20)
-              setTimeout(()=> {
-                self.showPage = true
-              }, 900)
-            }else if(code=="-1") {
-              self.$toast.show(ret[0].retmsg)
-              self.pageState = 'error'
-              self.tip = ret[0].retmsg || ""
-            }else {
-              self.pageState = 'success'
-              return
-            }
+          let ret = JSON.parse(r)
+
+          if(ret.length>0 && ret[0].iscode) {
+            self.stateFn(ret[0].ywzt)
           }else {
-            self.pageState = 'error'
+            self.$toast.show("出错了")
           }
         }
       })
+    },
+    stateFn(state) {
+      let s = 0
+      if(state<7) {
+        s = state+1
+      }
+      this.active = s
+      if(s==1) {
+        this.tip.start = '撤销受理'
+      }else if(s==2) {
+        this.tip.sec = '受理中'
+      }else if(s==3) {
+        this.tip.thr = '代办中'
+      }else if(s==4) {
+        this.tip.last = '正常办结'
+      }else if(s==5) {
+        this.tip.last = '异常办结'
+      }else if(s==6) {
+        this.tip.last = '办结撤销'
+      }else {
+        this.active = 1
+        this.tip.start = '不在受理中'
+      }
     },
     submitFn() {
 

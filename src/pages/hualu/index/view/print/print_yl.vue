@@ -1,8 +1,20 @@
 <template lang="html">
 <div class="">
-  <page>
+  <page :showFooter="true">
     <div class="">
-      养老
+      <p class="pane_title">个人信息</p>
+      <form-list name="toastSlideUp" v-if='pageData'>
+        <form-item title="姓名" :width="120" :showRight="false" :index='1'>
+          <p class="account_pane">{{pageData[0].psname}}</p>
+        </form-item>
+        <form-item title="身份证号" :width="120" :showRight="false" :index='2'>
+          <p class="account_pane">{{pageData[0].iscode}}</p>
+        </form-item>
+      </form-list>
+    </div>
+
+    <div slot="footer" class="footer_wrap">
+      <button class="btn footer_btn" @click="preview">预览</button>
     </div>
   </page>
 </div>
@@ -19,6 +31,10 @@ export default {
     showPage: false,
     pageState: 'loading'
   }),
+  components: {
+    formList: ()=> import ('@/components/FormList/FormList.vue'),
+    formItem: ()=> import ('@/components/FormList/FormItem.vue')
+  },
   methods: {
     getData() {
       let self = this
@@ -64,12 +80,35 @@ export default {
         }
       })
     },
+    preview() {
+      window.location.href = `http://shbx.sxxhrss.gov.cn/operation/f/user/getAAC001?claName=${localStorage.getItem('id') || sessionStorage.getItem('iscode')}&mb=dyff`
+    }
   },
   created() {
+    // this.preview()
     this.getData()
   }
 }
 </script>
 
-<style lang="css">
+<style lang="less">
+@import url('../../init/footer_btn.less');
+.htitle {
+  padding: 10px 15px;
+  color: #fff;
+  background: #d33f33;
+  font-size: 16px;
+}
+.pane_title {
+  font-size: 14px;
+  color: #999;
+  margin: 10px 15px;
+}
+.account_pane {
+  text-align: right;
+  width: 100%;
+}
+.table_pane {
+  font-size: 12px;
+}
 </style>

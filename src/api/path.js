@@ -6,6 +6,8 @@ export default function() {
   let api = '/shebao/api/transfer'
   const path = {
     getInfo: `${origin}${api}`,
+    business: `${origin}/shebao/api/gr1040`,
+    progress: `${origin}/shebao/api/gr1051`,
   }
   return path
 }

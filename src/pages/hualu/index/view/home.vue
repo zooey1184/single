@@ -41,20 +41,55 @@
       </div>
     </div>
   </page>
+
+  <div class="login_pane" v-if="showWrap">
+    <transition name="slide">
+      <login v-if="showLogin" :closeIcon="true" @close="closeLogin"></login>
+    </transition>
+  </div>
 </div>
 </template>
 
 <script>
 export default {
   name: "home-page",
+  data: ()=> ({
+    showLogin: false,
+    showWrap: false
+  }),
   components: {
-    waveWrap: ()=> import ('@/components/WaveWrap/WaveWrap.vue')
+    login: ()=> import ('./login/loginPane.vue')
   },
   methods: {
     goUrl(url) {
+      if(this.isLogin()) {
+        setTimeout(()=> {
+          this.$router.push(url)
+        }, 120)
+      }else {
+        // this.$router.push('/login')
+        this.showWrap = true
+        setTimeout(()=> {
+          this.showLogin = true
+        }, 20)
+      }
+    },
+    closeLogin() {
+      this.showLogin = false
       setTimeout(()=> {
-        this.$router.push(url)
-      }, 120)
+        this.showWrap = false
+      }, 500)
+    },
+    isLogin() {
+      let code = sessionStorage.getItem('iscode')
+      let id = localStorage.getItem('id')
+      let b = false
+      if(!!code || !!id) {
+        b = true
+      }else {
+        b = false
+      }
+      return b
     }
   },
   created() {
@@ -64,6 +99,13 @@ export default {
 </script>
 
 <style lang="less">
+/*slide-toggle*/
+.slide-enter-active, .slide-leave-active {
+  transition: all 0.5s linear;
+}
+.slide-enter, .slide-leave-to {
+  transform: translateY(100%);
+}
 .banner {
   position: relative;
   width: 100%;
@@ -99,5 +141,13 @@ export default {
 .icon {
   font-size: 25px;
   text-align: center;
+}
+.login_pane {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  z-index: 999;
 }
 </style>

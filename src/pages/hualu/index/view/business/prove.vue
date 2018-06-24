@@ -65,23 +65,37 @@ export default {
     validateImage(url) {
       let xmlHttp = null
       let b = false
-      try {
-        if (window.ActiveXObject) {
-          xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
-        } else if (window.XMLHttpRequest) {
-          xmlHttp = new XMLHttpRequest();
-        }
-        xmlHttp.open("Get", url, false);
-        xmlHttp.send();
-        if (xmlHttp.status == 404){
-          b = false;
-        } else{
-          b = true;
-        }
-      } catch (e) {
-        b = false
-      } finally {
+      if(this.isHasImg(url)) {
+        b = true
         return b
+      }else {
+        try {
+          if (window.ActiveXObject) {
+            xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+          } else if (window.XMLHttpRequest) {
+            xmlHttp = new XMLHttpRequest();
+          }
+          xmlHttp.open("Get", url, false);
+          xmlHttp.send();
+          if (xmlHttp.status == 404) {
+            b = false;
+          } else {
+            b = true;
+          }
+        } catch (e) {
+          b = false
+        } finally {
+          return b
+        }
+      }
+    },
+    isHasImg(pathImg) {
+      let ImgObj = new Image();
+      ImgObj.src = pathImg;
+      if (ImgObj.fileSize > 0 || (ImgObj.width > 0 && ImgObj.height > 0)) {
+        return true;
+      } else {
+        return false;
       }
     },
     submitFn() {
@@ -113,24 +127,24 @@ export default {
 
 <style lang="less">
 .btn_prove {
-  display: block;
-  margin: 20px auto;
-  outline: none;
-  border: none;
-  height: 42px;
-  font-size: 16px;
-  color: #fff;
-  background: rgb(10, 167, 245);
-  width: 90%;
-  &:active {
-    opacity: 0.8;
-  }
+    display: block;
+    margin: 20px auto;
+    outline: none;
+    border: none;
+    height: 42px;
+    font-size: 16px;
+    color: #fff;
+    background: rgb(10, 167, 245);
+    width: 90%;
+    &:active {
+        opacity: 0.8;
+    }
 }
 .img_pane {
-  img {
-    display: block;
-    max-width: 280px;
-    margin: 10px auto;
-  }
+    img {
+        display: block;
+        max-width: 280px;
+        margin: 10px auto;
+    }
 }
 </style>

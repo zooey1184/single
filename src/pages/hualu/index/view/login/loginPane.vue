@@ -1,8 +1,9 @@
 <template lang="html">
-  <div>
+  <div class="fullpage">
+    <i class="icon-close1 icon iconfont" v-if="closeIcon" @click="closeFn"></i>
     <transition :name="act">
       <register v-if="get_login=='register'"></register>
-      <login v-if="get_login=='login'"></login>
+      <login v-if="get_login=='login'" :icon="closeIcon" @close="closeFn"></login>
     </transition>
   </div>
 </template>
@@ -20,6 +21,12 @@ export default {
       'get_login'
     ])
   },
+  props: {
+    closeIcon: {
+      type: Boolean,
+      default: false
+    }
+  },
   data: ()=> ({
     act: 'scaleT'
   }),
@@ -32,11 +39,23 @@ export default {
       }
     }
   },
-
+  methods: {
+    closeFn() {
+      this.$emit('close')
+    }
+  }
 }
 </script>
 
 <style lang='less'>
+.fullpage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: auto;
+}
 .scaleT-enter-active, .scaleT-leave-active {
   transition: all 0.4s linear;
 }
@@ -58,5 +77,12 @@ export default {
 .scaleC-leave-to {
   transform: scale(1.5);
   opacity: 0;
+}
+.icon-close1 {
+  font-size: 20px;
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  z-index: 999;
 }
 </style>

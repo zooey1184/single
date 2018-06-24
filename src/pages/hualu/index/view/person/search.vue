@@ -16,11 +16,12 @@
           <p>{{pageData.year}}</p>
         </form-item>
       </form-list>
+      <div style="height: 70px;"></div>
     </div>
 
     <div slot="footer" class="footer_wrap">
       <div class="search_btn_group" v-if="showPage">
-        <button class="search_btn text_btn">退出</button>
+        <button class="search_btn text_btn" @click="loginOut">退出</button>
         <button class="search_btn submit_btn" @click="submitFn">确定</button>
       </div>
     </div>
@@ -87,6 +88,11 @@ export default {
           self.pageData[val] = k[0]
         }
       })
+    },
+    loginOut() {
+      sessionStorage.removeItem('iscode')
+      localStorage.removeItem('id')
+      window.history.go(-2)
     },
     getYearFn() {
       let t = new Date()

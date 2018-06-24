@@ -29,17 +29,21 @@ export default {
       }else if(state==2) {
         this.go_ln()
       }else if(state==3) {
-        this.go_yl()
+        this.preview()
       }
     },
     go_sh() {
-      this.$router.push('/print_sh')
+      // this.$router.push('/print_sh')
+      window.location.href = `//shbx.sxxhrss.gov.cn/operation/f/user/getAAC001?claName=${localStorage.getItem('id') || sessionStorage.getItem('iscode')}&mb=cbzm`
     },
     go_ln() {
       this.$router.push('/print_ln')
     },
     go_yl() {
       this.$router.push('/print_yl')
+    },
+    preview() {
+      window.location.href = `http://shbx.sxxhrss.gov.cn/operation/f/user/getAAC001?claName=${localStorage.getItem('id') || sessionStorage.getItem('iscode')}&mb=dyff`
     }
   }
 }

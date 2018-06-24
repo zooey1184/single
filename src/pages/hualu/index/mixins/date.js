@@ -23,7 +23,7 @@ export default {
         initDate() {
           let self = this
           let t = new Date()
-          let rangeY = 10
+          let rangeY = 100
           let current_y = t.getFullYear()
           let start_y = current_y-rangeY
           let data_y = []

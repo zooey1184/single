@@ -15,13 +15,13 @@
         <!-- <form-item title="固定电话" :index="3" :width="100">
           <input type="text" placeholder="请输入固定电话" name="" value="">
         </form-item> -->
-        <form-item title="现居住乡镇" :index="4" :width="100" @click.native="pickerFn('town')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住乡镇', test: townName, tag: 'townName'}">
+        <form-item title="现居住乡镇" :index="3" :width="100" @click.native="pickerFn('town')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住乡镇', test: townName, tag: 'townName'}">
           <input type="text" placeholder="请选择" v-model="townName">
         </form-item>
-        <form-item title="现居住社区" :index="5" :width="100" @click.native="pickerFn('community')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住社区', test: communityName, tag: 'communityName'}">
+        <form-item title="现居住社区" :index="4" :width="100" @click.native="pickerFn('community')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住社区', test: communityName, tag: 'communityName'}">
           <input type="text" placeholder="请选择" v-model="communityName">
         </form-item>
-        <form-item title="户籍地址" :index="6" :width="100" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入户籍地址', test: pageData.hjdz, tag: 'hjdz'}">
+        <form-item title="户籍地址" :index="5" :width="100" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入户籍地址', test: pageData.hjdz, tag: 'hjdz'}">
           <input type="text" placeholder="请输入户籍地址" v-model="pageData.hjdz">
         </form-item>
         <form-item title="现居住地址" :index="6" :width="100" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入现居住地址', test: pageData.xjzdz, tag: 'xjzdz'}">
@@ -73,6 +73,43 @@ export default {
     }
   },
   methods:{
+    getData() {
+      let self = this
+      let s = dataDeal.submitJson({
+        jyh: "GR1091",
+        iscode: sessionStorage.getItem('iscode') || localStorage.getItem('id'),
+      })
+      let data = {
+        inmsg: s
+      }
+      $.ajax({
+        url: path().getInfo,
+        data: data,
+        type: 'post',
+        success: r=> {
+          let ret = dataDeal.formJson(r)
+          let code = ret[0].retcode
+          if(code===0 || code=='0') {
+            // 成功
+            self.pageData = {
+              iscode: ret[0].iscode,
+              psname: ret[0].psname,
+              sjhm: ret[0].mtel,
+              xjzxz: ret[0].groupidname,
+              xjzsq: ret[0].groupidname2,
+              hjdz: ret[0].regaddr,
+              xjzdz: ret[0].address
+            }
+          }else if(code=="-1") {
+            self.pageData.iscode = sessionStorage.getItem('iscode') || localStorage.getItem('id') || ""
+            return
+          }else {
+            self.pageState = 'error'
+            return
+          }
+        }
+      })
+    },
     selectFn(i,v,t) {
       if(this.pickType=='town') {
         this.townName = t[0]
@@ -117,24 +154,21 @@ export default {
           success: r=> {
             let ret = dataDeal.formJson(r)
             let code = ret[0].retcode
-            if(code) {
-              if(code==="0") {
-                // 成功
-                self.$toast.show({
-                  position: 'middle',
-                  type: 'success',
-                  message: "修改成功"
-                })
-                setTimeout(()=> {
-                  window.history.back()
-                }, 1200)
-              }else if(code=="-1") {
-                self.$toast.show(ret[0].retmsg)
-              }else {
-                return
-              }
+            if(code===0 || code=='0') {
+              // 成功
+              self.$toast.show({
+                position: 'middle',
+                type: 'success',
+                message: "保存成功"
+              })
+              setTimeout(()=> {
+                self.$router.back()
+              }, 1200)
+            }else if(code=="-1") {
+              self.$toast.show(ret[0].retmsg)
             }else {
               self.$toast.show('出错了')
+              return
             }
           }
         })
@@ -144,6 +178,9 @@ export default {
         }, 50)
       }
     }
+  },
+  created() {
+    this.getData()
   }
 }
 </script>
@@ -162,7 +199,7 @@ export default {
     border: none;
     top: 6px;
     color: #fff;
-    background: blue;
+    background: #1f7eee;
     color: #fff;
     outline: none;
     &:active {

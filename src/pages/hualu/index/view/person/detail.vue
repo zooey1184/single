@@ -23,7 +23,7 @@
           </form-list>
         </div>
       </div>
-      <tip-page>
+      <tip-page v-else>
         <p slot="tip">没有记录</p>
       </tip-page>
     </div>

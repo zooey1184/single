@@ -31,7 +31,9 @@ import Alert from '@/plugin/alert/alert.js'
 Vue.use(Alert)
 import picker from '@/plugin/picker/picker.js'
 Vue.use(picker)
+
 Vue.component('page', PageWrap)
+
 new Vue({
   el: '#app',
   router,

@@ -61,6 +61,12 @@ export default {
     iscode: "",
     pwd: ""
   }),
+  props: {
+    icon: {
+      type: Boolean,
+      default: false
+    }
+  },
   methods: {
     ...mapActions([
       'set_login'
@@ -122,9 +128,7 @@ export default {
                 type: 'success',
                 message: "登录成功"
               })
-              setTimeout(()=> {
-                self.$router.push('/home')
-              }, 200)
+              self.nextStep(self.iscode)
             }else if(code=="-1") {
               self.$toast.show(ret[0].retmsg)
             }else {
@@ -135,6 +139,49 @@ export default {
           }
         }
       })
+    },
+    nextStep(iscode) {
+      // 下一步是否需要补充资料
+      if(this.icon) {
+        let self = this
+        let s = dataDeal.submitJson({
+          jyh: "GR1091",
+          iscode: iscode,
+        })
+        let data = {
+          inmsg: s
+        }
+        $.ajax({
+          url: path().getInfo,
+          data: data,
+          type: 'post',
+          success: r=> {
+            let ret = dataDeal.formJson(r)
+            let code = ret[0].retcode
+            if(code) {
+              if(code==="0") {
+                // 成功
+                sessionStorage.setItem('needInfo', 'no')
+                setTimeout(()=> {
+                  self.$router.push('/home')
+                }, 200)
+              }else if(code=="-1") {
+                self.$toast.show(ret[0].retmsg)
+                sessionStorage.setItem('needInfo', 'yes')
+                setTimeout(()=> {
+                  self.$router.push('/info')
+                }, 200)
+              }else {
+                return
+              }
+            }else {
+              self.pageState = 'error'
+            }
+          }
+        })
+      }else {
+        this.$emit('close')
+      }
     }
   },
   mounted() {

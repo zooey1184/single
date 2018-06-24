@@ -30,6 +30,7 @@
           </form-item>
         </form-list>
       </div>
+      <div style="height: 70px;"></div>
     </div>
 
     <div class="footer_wrap" slot="footer">
