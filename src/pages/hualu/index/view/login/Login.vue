@@ -101,15 +101,22 @@ export default {
     },
     loginFn() {
       let self = this
-      let s = dataDeal.submitJson({
+      let s = {
         jyh: "DL1070",
-        // iscode: "350921199101200012",
         iscode: this.iscode,
         password: this.pwd,
-        yzfs: 'sb'
-      })
+        fqsj: "2015-12-12 12:12:12",
+        jyfqjd: "YH0001",
+        yzm: "AD212DACWEWER232D2EE",
+        fqlsh: "20151212000000001",
+        jbr: "ABC",
+      }
+      let str = JSON.stringify([s])
+      // let da = `####${str}$$$$`
+      let da = `####[{"jyh":"DL1070","jyfqjd":"YH0001","yzm":"AD212DACWEWER232D2EE","fqlsh":"20151212000000001","jbr":"ABC","fqsj":"2015-12-12 12:12:12","iscode":"330621198110148696","password":"000000"}]$$$$`
+      
       let data = {
-        inmsg: s
+        inmsg: da
       }
       $.ajax({
         url: path().getInfo,
