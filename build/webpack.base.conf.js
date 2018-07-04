@@ -37,7 +37,10 @@ fileDisplay(FilePath)
 // 创建入口文件
 let obj = {}
 obj[`${s}`] = `./src/pages/${page}/${s}/${s}.js`
-
+let a = {
+  "babel-polyfill":"babel-polyfill",
+}
+Object.assign(obj, a)
 module.exports = {
   entry: (argv.length>2)? obj : entries,
   output: {
