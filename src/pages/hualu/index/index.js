@@ -14,12 +14,7 @@ fastclick.attach(document.body)
 // vConsole()
 import reg from '@/plugin/VReg/VReg.js'
 reg(Vue)
-// /******
-import 'babel-polyfill'
-import Es6Promise from 'es6-promise'
-require('es6-promise').polyfill()
-Es6Promise.polyfill()
-// ****/
+
 
 import Load from '@/plugin/load/load.js'
 Vue.use(Load)

@@ -1,4 +1,4 @@
-webpackJsonp([32],{"/GrQ":function(e,t,n){"use strict";t.a=function(){var e=window.location.origin,t=e.match(/(localhost|127.0.0.1)/g)?"http://47.104.227.117:8080":e;return{getInfo:t+"/shebao/api/transfer",business:t+"/shebao/api/gr1040",progress:t+"/shebao/api/gr1051"}}},L7Pj:function(e,t,n){var r,o;/*!
+webpackJsonp([32,0],{"/GrQ":function(e,t,n){"use strict";t.a=function(){var e=window.location.origin,t=e.match(/(localhost|127.0.0.1)/g)?"http://47.104.227.117:8080":e;return{getInfo:t+"/shebao/api/transfer",business:t+"/shebao/api/gr1040",progress:t+"/shebao/api/gr1051"}}},L7Pj:function(e,t,n){var r,o;/*!
  * jQuery JavaScript Library v3.3.1
  * https://jquery.com/
  *

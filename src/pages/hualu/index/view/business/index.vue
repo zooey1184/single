@@ -53,10 +53,12 @@ export default {
 
 <style scoped lang="less">
 @import url('../../init/init.less');
+@import url('../../../../../common/style/media.less');
 .item {
   width: 80%;
   overflow: hidden;
-  max-width: 280px;
+  // max-width: 280px;
+  .height(140px, 135px, 135px, 145px, 230px);
   position: relative;
   height: 140px;
   border-radius: 10px;
@@ -65,9 +67,9 @@ export default {
   padding: 15px;
   box-sizing: border-box;
   margin: 20px auto;
-
   p {
-    font-size: 20px;
+    // font-size: 20px;
+    .font(20px, 18px, 18px, 24px, 35px);
     font-family: "微软雅黑";
     font-weight: normal;
     color: #fff;
@@ -84,7 +86,8 @@ export default {
   .color_linear(rgb(247, 85, 16), rgb(251, 223, 77))
 }
 .icon_font {
-  font-size: 20px;
+  // font-size: 20px;
+  .font(20px, 18px, 18px, 24px, 35px);
   color: #fdfdfd;
 }
 .icon_bg {

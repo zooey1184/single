@@ -1,9 +1,9 @@
 <template>
   <div id="app">
     <transition :name="(`router-${get_pageAction}`)">
-      <keep-alive>
+      <!-- <keep-alive> -->
         <router-view ref="view"></router-view>
-      </keep-alive>
+      <!-- </keep-alive> -->
     </transition>
   </div>
 </template>

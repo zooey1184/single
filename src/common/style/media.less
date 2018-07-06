@@ -1,5 +1,5 @@
 // 响应式
-.font(@m:14px, @ml:13px, @s:12px, @l: 16px) {
+.font(@m:14px, @ml:13px, @s:12px, @l: 16px, @xl: 20px) {
   @media screen {
     font-size: @m;
     line-height: @m;
@@ -15,10 +15,14 @@
       font-size: @l;
       line-height: @l;
     }
+    @media (min-width: 650px) {
+      font-size: @xl;
+      line-height: @xl;
+    }
   }
 }
 
-.height(@m:14px, @ml:13px, @s:12px, @l: 16px) {
+.height(@m:14px, @ml:13px, @s:12px, @l: 16px, @xl: 20px) {
   @media screen {
     height: @m;
     @media (min-width: 330px) and (max-width: 369px) {
@@ -29,6 +33,9 @@
     }
     @media (min-width: 400px) {
       height: @l;
+    }
+    @media (min-width: 650px) {
+      height: @xl;
     }
   }
 }
@@ -74,7 +81,7 @@
     }
   }
 }
-.width(@m:14px, @ml:13px, @s:12px, @l: 16px) {
+.width(@m:14px, @ml:13px, @s:12px, @l: 16px, @xl: 20px) {
   @media screen {
     width: @m;
     @media (min-width: 330px) and (max-width: 369px) {
@@ -85,6 +92,9 @@
     }
     @media (min-width: 400px) {
       width: @l;
+    }
+    @media (min-width: 650px) {
+      width: @xl;
     }
   }
 }
