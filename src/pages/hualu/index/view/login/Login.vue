@@ -23,9 +23,9 @@
           <div class="input_item">
             <input type="text" placeholder="社保账号（身份证号）" v-model="iscode">
           </div>
-          <div class="input_item">
+          <!-- <div class="input_item">
             <input type="password" placeholder="请输入密码" v-model="pwd">
-          </div>
+          </div> -->
         </div>
 
         <button class="btn login" @click="submitFn">登录</button>
@@ -89,11 +89,12 @@ export default {
       }else {
         // 社保账号登录
         if(this.iscode!=="") {
-          if(this.pwd!==""){
-            this.loginFn()
-          }else {
-            this.$toast.show("密码不能为空")
-          }
+          // if(this.pwd!==""){
+          //
+          // }else {
+          //   this.$toast.show("密码不能为空")
+          // }
+          this.loginFn()
         }else {
           this.$toast.show('账号不能为空')
         }
@@ -104,7 +105,7 @@ export default {
       let s = {
         jyh: "DL1070",
         iscode: this.iscode,
-        password: this.pwd,
+        // password: this.pwd,
         fqsj: "2015-12-12 12:12:12",
         jyfqjd: "YH0001",
         yzm: "AD212DACWEWER232D2EE",
@@ -112,9 +113,9 @@ export default {
         jbr: "ABC",
       }
       let str = JSON.stringify([s])
-      // let da = `####${str}$$$$`
-      let da = `####[{"jyh":"DL1070","jyfqjd":"YH0001","yzm":"AD212DACWEWER232D2EE","fqlsh":"20151212000000001","jbr":"ABC","fqsj":"2015-12-12 12:12:12","iscode":"330621198110148696","password":"000000"}]$$$$`
-      
+      let da = `####${str}$$$$`
+      // let da = `####[{"jyh":"DL1070","jyfqjd":"YH0001","yzm":"AD212DACWEWER232D2EE","fqlsh":"20151212000000001","jbr":"ABC","fqsj":"2015-12-12 12:12:12","iscode":"330621198110148696","password":"000000"}]$$$$`
+
       let data = {
         inmsg: da
       }
@@ -125,31 +126,27 @@ export default {
         success: r=> {
           let ret = dataDeal.formJson(r)
           let code = ret[0].retcode
-          if(code) {
-            if(code==="0") {
-              // 成功
-              window.localStorage.setItem('id', self.iscode)
-              window.sessionStorage.setItem('iscode', self.iscode)
-              self.$toast.show({
-                position: 'middle',
-                type: 'success',
-                message: "登录成功"
-              })
-              self.nextStep(self.iscode)
-            }else if(code=="-1") {
-              self.$toast.show(ret[0].retmsg)
-            }else {
-              return
-            }
+          if(code=="0" || code===0) {
+            // 成功
+            window.localStorage.setItem('id', self.iscode)
+            window.sessionStorage.setItem('iscode', self.iscode)
+            self.$toast.show({
+              position: 'middle',
+              type: 'success',
+              message: "登录成功"
+            })
+            self.nextStep(self.iscode)
+          }else if(code=="-1") {
+            self.$toast.show(ret[0].retmsg)
           }else {
-            self.pageState = 'error'
+            return
           }
         }
       })
     },
     nextStep(iscode) {
       // 下一步是否需要补充资料
-      if(this.icon) {
+      if(!this.icon) {
         let self = this
         let s = dataDeal.submitJson({
           jyh: "GR1091",
@@ -165,24 +162,20 @@ export default {
           success: r=> {
             let ret = dataDeal.formJson(r)
             let code = ret[0].retcode
-            if(code) {
-              if(code==="0") {
-                // 成功
-                sessionStorage.setItem('needInfo', 'no')
-                setTimeout(()=> {
-                  self.$router.push('/home')
-                }, 200)
-              }else if(code=="-1") {
-                self.$toast.show(ret[0].retmsg)
-                sessionStorage.setItem('needInfo', 'yes')
-                setTimeout(()=> {
-                  self.$router.push('/info')
-                }, 200)
-              }else {
-                return
-              }
+            if(code=="0" || code===0) {
+              // 成功
+              sessionStorage.setItem('needInfo', 'no')
+              setTimeout(()=> {
+                self.$router.push('/home')
+              }, 200)
+            }else if(code=="-1") {
+              self.$toast.show(ret[0].retmsg)
+              sessionStorage.setItem('needInfo', 'yes')
+              setTimeout(()=> {
+                self.$router.push('/info')
+              }, 200)
             }else {
-              self.pageState = 'error'
+              return
             }
           }
         })

@@ -12,6 +12,7 @@ export default new Router({
     {
       path: '/',
       name: 'index',
+      redirect: '/home',
       component: () => import('../view/index.vue')
     },
     {

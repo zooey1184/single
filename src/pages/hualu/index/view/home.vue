@@ -2,7 +2,19 @@
 <div>
   <page title="首页" bgWrap="#fff" :showHeader="false">
     <div>
-      <div class="banner"></div>
+      <div class="banner">
+        <div class="swiper-container">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <img class="banner_img" src="../../../../assets/1.jpg" alt="">
+            </div>
+            <div class="swiper-slide">
+              <img class="banner_img" src="../../../../assets/2.jpg" alt="">
+            </div>
+          </div>
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
 
       <div class="home_item_wrap">
         <div class="item" @click="goUrl('/personal_info')">
@@ -61,6 +73,12 @@ export default {
     login: ()=> import ('./login/loginPane.vue')
   },
   methods: {
+    swiper() {
+      let mySwiper = new Swiper('.swiper-container', {
+        autoplay: 5000,//可选选项，自动滑动
+        pagination : '.swiper-pagination',
+      })
+    },
     goUrl(url) {
       if(this.isLogin()) {
         setTimeout(()=> {
@@ -93,7 +111,10 @@ export default {
     }
   },
   created() {
-    window.localStorage.setItem('id', "330621196609143334")
+    // window.localStorage.setItem('id', "330621196609143334")
+  },
+  mounted() {
+    this.swiper()
   }
 }
 </script>
@@ -110,7 +131,7 @@ export default {
   position: relative;
   width: 100%;
   min-height: 170px;
-  background: rgb(58, 149, 232)
+  // background: rgb(58, 149, 232)
 }
 .home_item_wrap {
   display: flex;
@@ -137,6 +158,9 @@ export default {
     text-align: center;
     margin-top: 4px;
   }
+}
+.banner_img {
+  width: 100%;
 }
 .icon {
   font-size: 25px;
