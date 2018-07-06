@@ -41,8 +41,15 @@ let a = {
   "babel-polyfill":"babel-polyfill",
 }
 Object.assign(obj, a)
+console.log('\n\n\n\n============');
+console.log('\n\n\n');
+console.log(JSON.stringify(obj));
+console.log('\n\n\n\n============');
 module.exports = {
-  entry: (argv.length>2)? obj : entries,
+  // entry: (argv.length>2)? obj : entries,
+  entry: {
+    app: ['babel-polyfill', './src/pages/hualu/index/index.js']
+  },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
