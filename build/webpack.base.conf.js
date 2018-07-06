@@ -42,10 +42,10 @@ let babel = {
 }
 Object.assign(obj, babel)
 module.exports = {
-  // entry: (argv.length>2)? obj : entries,
-  entry: {
-    app: ['babel-polyfill', './src/pages/hualu/index/index.js']
-  },
+  entry: (argv.length>2)? obj : entries,
+  // entry: {
+  //   app: ['babel-polyfill', './src/pages/hualu/index/index.js']
+  // },
   output: {
     path: config.build.assetsRoot,
     filename: '[name].js',
