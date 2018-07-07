@@ -48,6 +48,7 @@ export default {
 </script>
 
 <style lang='less'>
+@import url('../../../../../common/style/media.less');
 .fullpage {
   position: absolute;
   width: 100%;

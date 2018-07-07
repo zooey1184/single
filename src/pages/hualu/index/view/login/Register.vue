@@ -92,6 +92,7 @@ export default {
 
 <style scoped lang="less">
 @import "../../init/init.less";
+@import url('../../../../../common/style/media.less');
 .login_wrap {
   height: 100px;
   padding-top: 50px;
@@ -129,6 +130,9 @@ export default {
     input {
       height: 40px;
       font-size: 15px;
+      .height(45px, 45px, 45px, 45px, 80px, 80px);
+      // font-size: 15px;
+      .font(16px, 16px, 16px, 16px, 24px, 35px);
       outline: none;
       border: none;
     }
@@ -159,12 +163,16 @@ export default {
   background: #439df8;
   color: #fff;
   font-size: 16px;
+  .height(45px, 45px, 45px, 45px, 80px, 80px);
+  // font-size: 15px;
+  .font(16px, 16px, 16px, 16px, 24px, 35px);
   border: none;
   box-shadow: 0 0 10px rgba(70, 120, 231, .6);
 }
 .login_pwd_tip {
   text-align: center;
   font-size: 12px;
+  .font(16px, 16px, 16px, 16px, 24px, 24px);
   margin: 10px 0;
   color: rgb(57, 160, 255);
   &:active {

@@ -105,10 +105,10 @@ export default {
 	top: 0;
 	left: 0;
 	width: 100%;
-	padding: 12px 0;
+	padding: 24px 0;
 	background: rgba(250, 100, 100, .9);
 	color: #fff;
-	font-size: 14px;
+	font-size: 26px;
 	text-align: center;
 	z-index: 9999;
 }
@@ -121,6 +121,7 @@ export default {
   left: 50%;
   border-radius: 3px;
   text-align: center;
+  font-size: 26px;
   padding: 15px 10px;
   display: flex;
   align-items: center;

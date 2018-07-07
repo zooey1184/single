@@ -3,28 +3,28 @@
   <page title="完善个人信息" :showFooter="true">
     <div class="">
       <form-list name="rightOffset">
-        <form-item title="身份证号" :index="0" :width="130" :showRight="false" v-reg:info="{type: 'idCard', test: pageData.iscode, tag: 'iscode'}">
+        <form-item title="身份证号" :index="0" :width="200" :showRight="false" v-reg:info="{type: 'idCard', test: pageData.iscode, tag: 'iscode'}">
           <input type="text" placeholder="请输入身份证号" v-model="pageData.iscode">
         </form-item>
-        <form-item title="姓名" :index="1" :width="130" :showRight="false" v-reg:info="{type: 'realName', test: pageData.psname, tag: 'psname'}">
+        <form-item title="姓名" :index="1" :width="200" :showRight="false" v-reg:info="{type: 'realName', test: pageData.psname, tag: 'psname'}">
           <input type="text" placeholder="请输入姓名" v-model="pageData.psname">
         </form-item>
-        <form-item title="手机号" :index="2" :width="130" :showRight="false" v-reg:info="{type: 'tel', test: pageData.sjhm, tag: 'tel'}">
+        <form-item title="手机号" :index="2" :width="200" :showRight="false" v-reg:info="{type: 'tel', test: pageData.sjhm, tag: 'tel'}">
           <input type="text" placeholder="请输入手机号" v-model="pageData.sjhm">
         </form-item>
         <!-- <form-item title="固定电话" :index="3" :width="100">
           <input type="text" placeholder="请输入固定电话" name="" value="">
         </form-item> -->
-        <form-item title="现居住乡镇" :index="3" :width="130" @click.native="pickerFn('town')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住乡镇', test: townName, tag: 'townName'}">
+        <form-item title="现居住乡镇" :index="3" :width="200" @click.native="pickerFn('town')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住乡镇', test: townName, tag: 'townName'}">
           <input type="text" placeholder="请选择" v-model="townName">
         </form-item>
-        <form-item title="现居住社区" :index="4" :width="130" @click.native="pickerFn('community')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住社区', test: communityName, tag: 'communityName'}">
+        <form-item title="现居住社区" :index="4" :width="200" @click.native="pickerFn('community')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住社区', test: communityName, tag: 'communityName'}">
           <input type="text" placeholder="请选择" v-model="communityName">
         </form-item>
-        <form-item title="户籍地址" :index="5" :width="130" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入户籍地址', test: pageData.hjdz, tag: 'hjdz'}">
+        <form-item title="户籍地址" :index="5" :width="200" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入户籍地址', test: pageData.hjdz, tag: 'hjdz'}">
           <input type="text" placeholder="请输入户籍地址" v-model="pageData.hjdz">
         </form-item>
-        <form-item title="现居住地址" :index="6" :width="130" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入现居住地址', test: pageData.xjzdz, tag: 'xjzdz'}">
+        <form-item title="现居住地址" :index="6" :width="200" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入现居住地址', test: pageData.xjzdz, tag: 'xjzdz'}">
           <input type="text" placeholder="请输入现居住地址" v-model="pageData.xjzdz">
         </form-item>
       </form-list>

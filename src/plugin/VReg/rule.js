@@ -5,11 +5,11 @@ export function rule() {
       msg: "密码格式不正确"
     },
     tel: {
-      rule: /^1[3|4|5|7|8]\d{9}$/,
+      rule: /^1[3|4|5|6|7|8|9]\d{9}$/,
       msg: "手机号码不正确"
     },
     bankNum: {
-      rule: /^\d{10,19}$/,
+      rule: /^\d{8,28}$/,
       msg: "银行卡号不正确"
     },
     money: {
@@ -165,6 +165,23 @@ export function check(arg) {
     }else {
       result = false
       return
+    }
+  }
+  return result
+}
+
+export function ckitem(arg, i) {
+  let m = new Map()
+  let map = window[arg] || m
+  let result = false
+  for(let [k, v] of map.entries()) {
+    if(k==i) {
+      if(v.va) {
+        result = true
+      }else {
+        result = false
+        return result
+      }
     }
   }
   return result

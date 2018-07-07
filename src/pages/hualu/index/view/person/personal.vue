@@ -33,7 +33,7 @@
           </v-table>
         </div>
       </transition>
-      <div style="height: 70px;"></div>
+      <div style="height: 120px;"></div>
     </div>
     <div slot="footer" class="footer_wrap">
       <button class="btn footer_btn" @click="searchFn">个人缴费明细</button>
@@ -125,19 +125,18 @@ export default {
 <style lang="less">
 @import url('../../init/footer_btn.less');
 .pane_title {
-  font-size: 14px;
+  font-size: 26px;
   color: #999;
-  margin: 10px 15px;
+  margin: 20px 15px;
 }
 .account_pane {
   text-align: right;
   width: 100%;
 }
-// .fullpage {
-//   position: absolute;
-//   width: 100%;
-//   height: 100%;
-//   top: 0;
-//   left: 0;
+.columnCellClass {
+  height: 60px;
+}
+// td {
+//   height: 60px;
 // }
 </style>

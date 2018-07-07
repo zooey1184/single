@@ -205,15 +205,11 @@ export default {
         let data = {
           inmsg: s
         }
-        this.$load.show()
         $.ajax({
           url: path().business,
           data: data,
           type: 'post',
           success: r=> {
-            setTimeout(()=> {
-              self.$load.hide()
-            }, 1000)
             if(r===0 ||r=='0') {
               self.$toast.show('出错啦，请稍后再试')
             }else if(r===1 || r=='1') {
@@ -228,9 +224,6 @@ export default {
             }
           }
         })
-        setTimeout(()=> {
-          self.$load.hide()
-        }, 10000)
       }else {
         setTimeout(()=> {
           this.check = false

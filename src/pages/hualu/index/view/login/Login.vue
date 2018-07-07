@@ -59,7 +59,8 @@ export default {
     login_phone: false,
     loginType: "社保账号登录",
     iscode: "",
-    pwd: ""
+    pwd: "",
+    time: 5,     // 5分钟失效
   }),
   props: {
     icon: {
@@ -135,6 +136,14 @@ export default {
               type: 'success',
               message: "登录成功"
             })
+            sessionStorage.setItem('accessToken', true)
+            let loginT = self.time * 60 * 1000
+            setTimeout(()=> {
+              sessionStorage.removeItem('accessToken')
+              sessionStorage.removeItem('iscode')
+              localStorage.removeItem('id')
+              self.$toast.show('登录失效')
+            }, loginT)
             self.nextStep(self.iscode)
           }else if(code=="-1") {
             self.$toast.show(ret[0].retmsg)
@@ -194,7 +203,7 @@ export default {
 
 <style scoped lang="less">
 @import "../../init/init.less";
-
+@import url('../../../../../common/style/media.less');
 .loginPage_title_top {
   position: relative;
   font-size: 39px;
@@ -227,8 +236,10 @@ export default {
     margin: 10px 0;
     box-sizing: border-box;
     input {
-      height: 40px;
-      font-size: 15px;
+      // height: 40px;
+      .height(45px, 45px, 45px, 45px, 80px, 80px);
+      // font-size: 15px;
+      .font(16px, 16px, 16px, 16px, 24px, 35px);
       outline: none;
       border: none;
     }
@@ -253,9 +264,11 @@ export default {
   width: 90%;
   display: block;
   margin: 30px auto;
-  height: 45px;
+  // height: 45px;
+  .height(45px, 45px, 45px, 45px, 80px, 80px);
   border: none;
   font-size: 16px;
+  .font(16px, 16px, 16px, 16px, 24px, 35px);
   background: #439df8;
   color: #fff;
   font-size: 16px;
@@ -265,7 +278,8 @@ export default {
 .login_pwd_tip {
   text-align: center;
   font-size: 12px;
-  margin: 10px 0;
+  .font(16px, 16px, 16px, 16px, 24px, 27px);
+  margin: 20px 0;
   color: #999;
   &:active {
     color: rgb(252, 184, 21)

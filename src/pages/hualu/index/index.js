@@ -7,38 +7,36 @@ import router from './router'
 Vue.config.productionTip = false
 import PageWrap from './components/PageWrap/PageWrap.vue'
 import store from './store'
-
-import fastclick from 'fastclick'
-fastclick.attach(document.body)
-// import { vConsole } from '@/common/js/vconsole'
-// vConsole()
-import reg from '@/plugin/VReg/VReg.js'
-reg(Vue)
-
-
-import Load from '@/plugin/load/load.js'
-Vue.use(Load)
-// import ajax from '@/plugin/ajax/ajax.js'
-// Vue.use(ajax)
-import 'vue-easytable/libs/themes-base/index.css'
-// import table and pagination comp
-import {VTable,VPagination} from 'vue-easytable'
-// Register to global
-Vue.component(VTable.name, VTable)
-Vue.component(VPagination.name, VPagination)
-
 import 'babel-polyfill'
 import Es6Promise from 'es6-promise'
+import reg from '@/plugin/VReg/VReg.js'
+import Toast from '@/plugin/tip/tip.js'
+import picker from '@/plugin/picker/picker.js'
+import 'vue-easytable/libs/themes-base/index.css'
+import {VTable,VPagination} from 'vue-easytable'
+
+reg(Vue)
+// import vreg from 'vreg'
+// vreg(Vue)
+router.beforeEach((to, from, next) => {
+  if(to.path === '/login')  {
+    next()
+  } else {
+    if(to.meta.requiresAuth && !sessionStorage.getItem('accessToken')) {
+      // alert('请先登录')
+      next({ path: '/login' })
+    }else {
+      next()
+    }
+  }
+})
+
+Vue.component(VTable.name, VTable)
+Vue.component(VPagination.name, VPagination)
 require('es6-promise').polyfill()
 Es6Promise.polyfill()
-
-import Toast from '@/plugin/tip/tip.js'
 Vue.use(Toast)
-import Alert from '@/plugin/alert/alert.js'
-Vue.use(Alert)
-import picker from '@/plugin/picker/picker.js'
 Vue.use(picker)
-
 Vue.component('page', PageWrap)
 
 new Vue({

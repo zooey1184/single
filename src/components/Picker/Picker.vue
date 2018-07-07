@@ -279,7 +279,7 @@
           height: 233px;
         }
         @media (min-width: 650px) {
-          height: 500px;
+          height: 850px;
         }
       }
       background: $color-white
@@ -290,6 +290,24 @@
       .picker-choose
         position: relative
         height: 60px
+        @media screen {
+          height: 60px
+          @media (min-width: 330px) and (max-width: 369px) {
+            height: 60px
+          }
+          @media (max-width: 329px) {
+            height: 60px
+          }
+          @media (min-width: 400px) {
+            height: 60px
+          }
+          @media (min-width: 650px) {
+            height: 120px
+          }
+          @media (min-width: 950px) {
+            height: 200px
+          }
+        }
         color: $color-light-grey
         .picker-title
           margin: 0
@@ -303,6 +321,30 @@
           top: 6px
           padding: 16px
           font-size: $fontsize-medium
+          @media screen {
+            font-size: 16px;
+            line-height: 16px;
+            @media (min-width: 330px) and (max-width: 369px) {
+              font-size:  16px;
+              line-height: 16px;
+            }
+            @media (max-width: 329px) {
+              font-size: 16px;
+              line-height: 16px;
+            }
+            @media (min-width: 400px) {
+              font-size: 16px;
+              line-height: 16px;
+            }
+            @media (min-width: 650px) {
+              font-size: 30px;
+              line-height: 30px;
+            }
+            @media (min-width: 950px) {
+              font-size: 40px;
+              line-height: 40px;
+            }
+          }
         .confirm
           right: 0
           color: $color-main
@@ -319,24 +361,85 @@
           z-index: 10
           width: 100%
           height: 68px
+          // background: #ddd
           pointer-events: none
           transform: translateZ(0)
         .mask-top
           position: absolute
           top: 0
-          background: linear-gradient(to top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.8))
+          background: linear-gradient(to top, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7))
         .mask-bottom
           position: absolute
           bottom: 1px
-          background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.8))
+          @media screen {
+            height: 68px
+            @media (min-width: 330px) and (max-width: 369px) {
+              height: 68px
+            }
+            @media (max-width: 329px) {
+              height: 68px
+            }
+            @media (min-width: 400px) {
+              height: 68px
+            }
+            @media (min-width: 650px) {
+              height: 68px
+            }
+            @media (min-width: 950px) {
+              height: 250px
+            }
+          }
+          background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.7))
       .wheel-wrapper
         display: flex
         padding: 0 16px
         .wheel
           flex-fix()
           height: 173px
+          @media screen {
+            height: 173px
+            @media (min-width: 330px) and (max-width: 369px) {
+              height: 173px
+            }
+            @media (max-width: 329px) {
+              height: 173px
+            }
+            @media (min-width: 400px) {
+              height: 173px
+            }
+            @media (min-width: 650px) {
+              height: 300px
+            }
+            @media (min-width: 950px) {
+              height: 400px
+            }
+          }
           overflow: hidden
           font-size: $fontsize-large-xx
+          @media screen {
+            font-size: 16px;
+            line-height: 16px;
+            @media (min-width: 330px) and (max-width: 369px) {
+              font-size:  16px;
+              line-height: 16px;
+            }
+            @media (max-width: 329px) {
+              font-size: 16px;
+              line-height: 16px;
+            }
+            @media (min-width: 400px) {
+              font-size: 16px;
+              line-height: 16px;
+            }
+            @media (min-width: 650px) {
+              font-size: 30px;
+              line-height: 30px;
+            }
+            @media (min-width: 950px) {
+              font-size: 40px;
+              line-height: 40px;
+            }
+          }
           .wheel-scroll
             padding: 0
             margin-top: 68px
@@ -345,6 +448,25 @@
             .wheel-item
               list-style: none
               height: 36px
+              @media screen {
+                height: 36px
+                @media (min-width: 330px) and (max-width: 369px) {
+                  height: 36px
+                }
+                @media (max-width: 329px) {
+                  height: 36px
+                }
+                @media (min-width: 400px) {
+                  height: 36px
+                }
+                @media (min-width: 650px) {
+                  height: 60px
+                }
+                @media (min-width: 950px) {
+                  height: 80px
+                  padding-top: 20px
+                }
+              }
               overflow: hidden
               white-space: nowrap
               color: $color-dark-grey

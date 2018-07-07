@@ -5,13 +5,14 @@ Toast.install = function(Vue, options) { // vue的install方法，用于定义vu
   if (document.getElementsByClassName('toast_pane').length) {
     return
   }
-  let toastTpl = Vue.extend(Alert)
-  let $vm = new toastTpl() // 实例化vue实例
+  let ToastTpl = Vue.extend(Alert)
+  let $vm = new ToastTpl() // 实例化vue实例
   // window.vTip = $vm
-  window.vm = $vm
+
   let tpl = $vm.$mount().$el
   document.body.appendChild(tpl)
-
+  window.vm = $vm
+  // console.log($toast);
   Vue.prototype.$toast = { // 在Vue的原型上添加实例方法，以全局调用
     show: function(options) { // 控制toast显示的方法
       if (document.getElementsByClassName('toast_pane').length) {

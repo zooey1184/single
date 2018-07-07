@@ -33,84 +33,126 @@ export default new Router({
     {
       path: '/home',
       name: 'home',
-      component: () => import('../view/home.vue')
+      component: () => import('../view/home.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/info',
       name: 'info',
-      component: () => import('../view/info.vue')
+      component: () => import('../view/info.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     // 业务进度
     {
       path: '/progress',
       name: 'progress',
-      component: () => import('../view/progress/index.vue')
+      component: () => import('../view/progress/index.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/progress_detail',
       name: 'progress_detail',
-      component: () => import('../view/progress/detail.vue')
+      component: () => import('../view/progress/detail.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     // 业务办理
     {
       path: '/social_index',
       name: 'social_index',
-      component: () => import('../view/business/index.vue')
+      component: () => import('../view/business/index.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/social_detail/:state',
       name: 'social_detail',
-      component: () => import('../view/business/detail.vue')
+      component: () => import('../view/business/detail.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/social_prove',
       name: 'social_prove',
       component: () => import('../view/business/prove.vue'),
       meta: {
-        title: "社保证明验证"
+        requiresAuth: true
       }
     },
     // 个人信息查询
     {
       path: '/personal_info',
       name: 'personal_info',
-      component: () => import('../view/person/personal.vue')
+      component: () => import('../view/person/personal.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/personal_search',
       name: 'personal_search',
-      component: () => import('../view/person/search.vue')
+      component: () => import('../view/person/search.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/personal_detail',
       name: 'personal_detail',
-      component: () => import('../view/person/detail.vue')
+      component: () => import('../view/person/detail.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/medcial_account',
       name: 'medcial_account',
-      component: () => import('../view/medcial/account_search.vue')
+      component: () => import('../view/medcial/account_search.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     // 个人信息打印
     {
       path: '/print_index',
       name: 'print_index',
-      component: () => import('../view/print/index.vue')
+      component: () => import('../view/print/index.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/print_sh',
       name: 'print_sh',
-      component: () => import('../view/print/print_sh.vue')
+      component: () => import('../view/print/print_sh.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/print_ln',
       name: 'print_ln',
-      component: () => import('../view/print/print_ln.vue')
+      component: () => import('../view/print/print_ln.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
     {
       path: '/print_yl',
       name: 'print_yl',
-      component: () => import('../view/print/print_yl.vue')
+      component: () => import('../view/print/print_yl.vue'),
+      meta: {
+        requiresAuth: true
+      }
     },
   ]
 })

@@ -200,7 +200,7 @@ export default {
     top: 0;
     left: 0;
     font-size: 14px;
-    .font(14px, 14px, 14px, 14px, 16px, 24px);
+    .font(14px, 14px, 14px, 14px, 16px, 30px);
     border: none;
     outline: none;
     margin: 0;
@@ -211,7 +211,7 @@ export default {
     font-size: 14px;
     color: #666;
     // line-height: 14px;
-    .font(14px, 14px, 14px, 14px, 16px, 24px);
+    .font(14px, 14px, 14px, 14px, 16px, 30px);
     margin: 0;
     position: absolute;
     top: 52%;
@@ -225,7 +225,7 @@ export default {
   width: 100%;
   overflow: hidden;
   // height: 48px;
-  .height(48px, 48px, 47px, 48px, 60px, 70px);
+  .height(48px, 48px, 47px, 48px, 60px, 80px);
   padding: 0 12px;
   // display: flex;
   // align-items: center;
@@ -238,7 +238,7 @@ export default {
     left: 12px;
     height: 100%;
     // font-size: 16px;
-    .font(14px, 14px, 14px, 14px, 16px, 24px);
+    .font(14px, 14px, 14px, 14px, 16px, 30px);
   }
   .middle {
     flex-grow: 1;
@@ -257,7 +257,7 @@ export default {
     height: 100%;
     justify-content: flex-end;
     img {
-      width: 15px;
+      width: 25px;
     }
   }
 }

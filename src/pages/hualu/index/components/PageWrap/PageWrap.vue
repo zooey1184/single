@@ -50,7 +50,7 @@ export default {
     },
     footer_H: {
       type: Number,
-      default: 60
+      default: 120
     },
     showHeader: {
       type: Boolean,

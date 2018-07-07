@@ -13,11 +13,24 @@ import {mapActions, mapGetters} from 'vuex'
 
 export default {
   name: 'App',
+  data: ()=> ({
+    time: 5
+  }),
   computed: {
     ...mapGetters([
       'get_pageAction'
     ])
   },
+  created() {
+    let loginT = self.time * 60 * 1000
+    if(sessionStorage.getItem('accessToken')) {
+      setTimeout(()=> {
+        sessionStorage.removeItem('accessToken')
+        sessionStorage.removeItem('iscode')
+        localStorage.removeItem('id')
+      }, loginT)
+    }
+  }
 }
 </script>
 
