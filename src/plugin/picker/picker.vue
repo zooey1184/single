@@ -267,7 +267,22 @@
       z-index: 600
       bottom: 0
       width: 100%
-      height: 233px
+      // height: 233px
+      @media screen {
+        height: 233px;
+        @media (min-width: 330px) and (max-width: 369px) {
+          height: 233px;
+        }
+        @media (max-width: 329px) {
+          height: 233px;
+        }
+        @media (min-width: 400px) {
+          height: 233px;
+        }
+        @media (min-width: 650px) {
+          height: 500px;
+        }
+      }
       background: $color-white
       &.picker-move-enter, &.picker-move-leave-active
         transform: translate3d(0, 273px, 0)

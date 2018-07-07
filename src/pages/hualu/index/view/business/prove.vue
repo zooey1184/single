@@ -4,10 +4,10 @@
   <page>
     <div>
       <form-list name="toastSlideUp">
-        <form-item title="证明类别" :index="0" :width="100" @click.native="pickerFn">
+        <form-item title="证明类别" :index="0" :width="130" @click.native="pickerFn">
           <p :style="{color: typeName?'#333':'#999'}">{{typeName?typeName:'请选择证明类别'}}</p>
         </form-item>
-        <form-item title="证明编号" :index="1" :width="100" :showRight="false">
+        <form-item title="证明编号" :index="1" :width="130" :showRight="false">
           <input type="text" placeholder="请输入证明编号" v-model="num">
         </form-item>
       </form-list>
@@ -126,13 +126,16 @@ export default {
 </script>
 
 <style lang="less">
+@import url('../../../../../common/style/media.less');
 .btn_prove {
     display: block;
     margin: 20px auto;
     outline: none;
     border: none;
-    height: 42px;
-    font-size: 16px;
+    // height: 42px;
+    .height(42px, 42px, 42px, 45px, 50px, 60px);
+    // font-size: 16px;
+    .font(16px, 16px, 16px, 18px, 22px, 28px);
     color: #fff;
     background: rgb(10, 167, 245);
     width: 90%;

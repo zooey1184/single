@@ -167,12 +167,13 @@ export default {
 </script>
 
 <style lang="less">
+@import url('../../init/footer_btn.less');
 .footer_wrap {
-    background: #fff;
-    height: 100%;
-    width: 100%;
-    position: relative;
-    padding: 0 10px;
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding: 0 10px;
 }
 .search_btn_group {
     width: 100%;
@@ -184,10 +185,12 @@ export default {
     align-items: center;
     justify-content: space-between;
     button {
-        height: 45px;
+        // height: 45px;
+        .height(45px, 45px, 45px, 42px, 50px, 60px);
         outline: none;
         border: none;
         font-size: 16px;
+        .font(16px, 16px, 16px, 14px, 18px, 28px);
     }
     .submit_btn {
         width: 80%;
@@ -201,7 +204,7 @@ export default {
         background: #fff;
         width: 20%;
         &:active {
-            color: #d22e44;
+          color: #d22e44;
         }
     }
 }

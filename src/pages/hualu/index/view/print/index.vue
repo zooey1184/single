@@ -56,7 +56,7 @@ export default {
   width: 80%;
   overflow: hidden;
   // max-width: 280px;
-  .height(140px, 135px, 135px, 145px, 230px);
+  .height(140px, 135px, 135px, 145px, 230px, 230px);
   position: relative;
   height: 140px;
   border-radius: 10px;
@@ -67,7 +67,7 @@ export default {
   margin: 20px auto;
   p {
     // font-size: 20px;
-    .font(20px, 18px, 18px, 24px, 35px);
+    .font(20px, 18px, 18px, 24px, 35px, 35px);
     font-family: "微软雅黑";
     font-weight: normal;
     color: #fff;
@@ -85,7 +85,7 @@ export default {
 }
 .icon_font {
   // font-size: 20px;
-  .font(20px, 18px, 18px, 24px, 35px);
+  .font(20px, 18px, 18px, 24px, 35px, 45px);
   color: #fdfdfd;
 }
 .icon_bg {

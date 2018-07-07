@@ -43,7 +43,7 @@
         </div>
         <div class="item" @click="goUrl('/social_prove')">
           <i class="icon icon-shebao iconfont" style="color: rgb(255, 116, 3)"></i>
-          <p class="item_font">社保证明</p>
+          <p class="item_font">参保证明验证</p>
         </div>
 
         <div class="item" @click="goUrl('/more')">
@@ -120,6 +120,7 @@ export default {
 </script>
 
 <style lang="less">
+@import url('../../../../common/style/media.less');
 /*slide-toggle*/
 .slide-enter-active, .slide-leave-active {
   transition: all 0.5s linear;
@@ -136,22 +137,28 @@ export default {
 .home_item_wrap {
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: flex-start;
   text-align: center;
   flex-wrap: wrap;
   margin-top: 5px;
+  width: 100%;
+  box-sizing: border-box;
   .item {
-    width: 21%;
+    // width: 21%;
+    .width(25%, 25%, 25%, 25%, 33%);
     display: inline-block;
     text-align: center;
-    margin: 10px 0;
+    // margin: 10px -4px;
+    margin-top: 3%;
+    box-sizing: border-box;
     padding: 5px;
     &:active {
       background: rgba(0,0,0,0.1);
     }
   }
   .item_font {
-    font-size: 13px;
+    // font-size: 13px;
+    .font(13px, 13px, 12px, 14px, 22px, 35px);
     transform: scale(.9);
     transform-origin: bottom center;
     white-space: nowrap;
@@ -163,7 +170,8 @@ export default {
   width: 100%;
 }
 .icon {
-  font-size: 25px;
+  // font-size: 25px;
+  .font(25px, 25px, 24px, 27px, 40px, 56px);
   text-align: center;
 }
 .login_pane {

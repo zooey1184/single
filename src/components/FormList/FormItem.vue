@@ -1,6 +1,6 @@
 <template>
 <transition :name="name">
-  <div class="f_i_w_v underlineF" v-show="showItem" :style="{transitionDelay: animateSec, height: `${height}px` }">
+  <div class="f_i_w_v underlineF" v-show="showItem" :style="{transitionDelay: animateSec}">
     <div class="left" :style="leftStyle">
       {{title}}
     </div>
@@ -137,6 +137,52 @@ export default {
 </script>
 
 <style lang="less">
+.height(@m: 48px, @ml:48px, @s:45px, @l: 50px, @xl: 60px, @pc: 70px) {
+  @media screen {
+    height: @m;
+    @media (min-width: 330px) and (max-width: 369px) {
+      height: @ml;
+    }
+    @media (max-width: 329px) {
+      height: @s;
+    }
+    @media (min-width: 400px) {
+      height: @l;
+    }
+    @media (min-width: 650px) {
+      height: @xl;
+    }
+    @media (min-width: 950px) {
+      height: @pc;
+    }
+  }
+}
+.font(@m:14px, @ml:14px, @s:14px, @l: 16px, @xl: 18px, @pc: 20px) {
+  @media screen {
+    font-size: @m;
+    line-height: @m;
+    @media (min-width: 330px) and (max-width: 369px) {
+      font-size:  @ml;
+      line-height: @ml;
+    }
+    @media (max-width: 329px) {
+      font-size: @s;
+      line-height: @s;
+    }
+    @media (min-width: 400px) {
+      font-size: @l;
+      line-height: @l;
+    }
+    @media (min-width: 650px) {
+      font-size: @xl;
+      line-height: @xl;
+    }
+    @media (min-width: 950px) {
+      font-size: @pc;
+      line-height: @pc;
+    }
+  }
+}
 .flexBlock {
   display: flex;
   align-items: center;
@@ -154,6 +200,7 @@ export default {
     top: 0;
     left: 0;
     font-size: 14px;
+    .font(14px, 14px, 14px, 14px, 16px, 24px);
     border: none;
     outline: none;
     margin: 0;
@@ -163,7 +210,8 @@ export default {
   p {
     font-size: 14px;
     color: #666;
-    line-height: 14px;
+    // line-height: 14px;
+    .font(14px, 14px, 14px, 14px, 16px, 24px);
     margin: 0;
     position: absolute;
     top: 52%;
@@ -176,7 +224,8 @@ export default {
   position: relative;
   width: 100%;
   overflow: hidden;
-  height: 48px;
+  // height: 48px;
+  .height(48px, 48px, 47px, 48px, 60px, 70px);
   padding: 0 12px;
   // display: flex;
   // align-items: center;
@@ -188,7 +237,8 @@ export default {
     top: 0;
     left: 12px;
     height: 100%;
-    font-size: 16px;
+    // font-size: 16px;
+    .font(14px, 14px, 14px, 14px, 16px, 24px);
   }
   .middle {
     flex-grow: 1;

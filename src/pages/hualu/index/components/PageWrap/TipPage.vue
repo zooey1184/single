@@ -21,6 +21,7 @@ export default {
 </script>
 
 <style lang="less">
+@import url('../../../../../common/style/media.less');
 .tip__wrap_pane {
   position: absolute;
   width: 100%;
@@ -37,7 +38,8 @@ export default {
       width: 121px;
     }
     p {
-      font-size: 12px;
+      // font-size: 12px;
+      .font(12px, 12px, 12px, 14px, 18px, 24px);
       margin-top: 20px;
       color: #999;
     }

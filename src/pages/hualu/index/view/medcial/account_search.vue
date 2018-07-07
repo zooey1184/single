@@ -111,6 +111,7 @@ export default {
 </script>
 
 <style lang="less">
+@import url('../../init/footer_btn.less');
 .pane_title {
   font-size: 14px;
   color: #999;
@@ -120,33 +121,33 @@ export default {
   text-align: right;
   width: 100%;
 }
-.footer_wrap {
-  background: #fff;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  padding: 0 10px;
-  box-sizing: border-box;
-}
-.btn {
-  display: inline-block;
-  height: 42px;
-  outline: none;
-  border: none;
-  font-size: 16px;
-}
-.footer_btn {
-  background: rgb(31, 126, 238);
-  width: 94%;
-  display: block;
-  margin: 0 auto;
-  color: #fff;
-  padding: 0 10px;
-  &:active {
-    opacity: 0.8
-  }
-}
+// .footer_wrap {
+//   background: #fff;
+//   height: 100%;
+//   position: relative;
+//   display: flex;
+//   align-items: center;
+//   justify-content: space-between;
+//   width: 100%;
+//   padding: 0 10px;
+//   box-sizing: border-box;
+// }
+// .btn {
+//   display: inline-block;
+//   height: 42px;
+//   outline: none;
+//   border: none;
+//   font-size: 16px;
+// }
+// .footer_btn {
+//   background: rgb(31, 126, 238);
+//   width: 94%;
+//   display: block;
+//   margin: 0 auto;
+//   color: #fff;
+//   padding: 0 10px;
+//   &:active {
+//     opacity: 0.8
+//   }
+// }
 </style>

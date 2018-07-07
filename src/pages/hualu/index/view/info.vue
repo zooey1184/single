@@ -3,34 +3,34 @@
   <page title="完善个人信息" :showFooter="true">
     <div class="">
       <form-list name="rightOffset">
-        <form-item title="身份证号" :index="0" :width="100" :showRight="false" v-reg:info="{type: 'idCard', test: pageData.iscode, tag: 'iscode'}">
+        <form-item title="身份证号" :index="0" :width="130" :showRight="false" v-reg:info="{type: 'idCard', test: pageData.iscode, tag: 'iscode'}">
           <input type="text" placeholder="请输入身份证号" v-model="pageData.iscode">
         </form-item>
-        <form-item title="姓名" :index="1" :width="100" :showRight="false" v-reg:info="{type: 'realName', test: pageData.psname, tag: 'psname'}">
+        <form-item title="姓名" :index="1" :width="130" :showRight="false" v-reg:info="{type: 'realName', test: pageData.psname, tag: 'psname'}">
           <input type="text" placeholder="请输入姓名" v-model="pageData.psname">
         </form-item>
-        <form-item title="手机号" :index="2" :width="100" :showRight="false" v-reg:info="{type: 'tel', test: pageData.sjhm, tag: 'tel'}">
+        <form-item title="手机号" :index="2" :width="130" :showRight="false" v-reg:info="{type: 'tel', test: pageData.sjhm, tag: 'tel'}">
           <input type="text" placeholder="请输入手机号" v-model="pageData.sjhm">
         </form-item>
         <!-- <form-item title="固定电话" :index="3" :width="100">
           <input type="text" placeholder="请输入固定电话" name="" value="">
         </form-item> -->
-        <form-item title="现居住乡镇" :index="3" :width="100" @click.native="pickerFn('town')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住乡镇', test: townName, tag: 'townName'}">
+        <form-item title="现居住乡镇" :index="3" :width="130" @click.native="pickerFn('town')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住乡镇', test: townName, tag: 'townName'}">
           <input type="text" placeholder="请选择" v-model="townName">
         </form-item>
-        <form-item title="现居住社区" :index="4" :width="100" @click.native="pickerFn('community')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住社区', test: communityName, tag: 'communityName'}">
+        <form-item title="现居住社区" :index="4" :width="130" @click.native="pickerFn('community')" v-reg:info="{rule: /[^\s]/g, msg: '请选择现居住社区', test: communityName, tag: 'communityName'}">
           <input type="text" placeholder="请选择" v-model="communityName">
         </form-item>
-        <form-item title="户籍地址" :index="5" :width="100" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入户籍地址', test: pageData.hjdz, tag: 'hjdz'}">
+        <form-item title="户籍地址" :index="5" :width="130" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入户籍地址', test: pageData.hjdz, tag: 'hjdz'}">
           <input type="text" placeholder="请输入户籍地址" v-model="pageData.hjdz">
         </form-item>
-        <form-item title="现居住地址" :index="6" :width="100" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入现居住地址', test: pageData.xjzdz, tag: 'xjzdz'}">
+        <form-item title="现居住地址" :index="6" :width="130" :showRight="false" v-reg:info="{rule: /[^\s]/g, msg: '请输入现居住地址', test: pageData.xjzdz, tag: 'xjzdz'}">
           <input type="text" placeholder="请输入现居住地址" v-model="pageData.xjzdz">
         </form-item>
       </form-list>
     </div>
-    <div slot="footer" class="page_footer">
-      <button type="button" name="button" @click="submitFn" v-reg:info.check="{check: check}">提交</button>
+    <div slot="footer" class="footer_wrap">
+      <button class="footer_btn btn" @click="submitFn" v-reg:info.check="{check: check}">提交</button>
     </div>
   </page>
   <picker :data="data" :selectedIndex="[0]" ref="pick" @select="selectFn"></picker>
@@ -186,25 +186,5 @@ export default {
 </script>
 
 <style lang="less">
-.page_footer {
-  background: #fff;
-  height: 100%;
-  width: 100%;
-  button {
-    position: absolute;
-    width: 90%;
-    left: 5%;
-    height: 48px;
-    font-size: 16px;
-    border: none;
-    top: 6px;
-    color: #fff;
-    background: #1f7eee;
-    color: #fff;
-    outline: none;
-    &:active {
-      opacity: 0.8
-    }
-  }
-}
+@import url('../init/footer_btn.less');
 </style>

@@ -1,5 +1,5 @@
 // 响应式
-.font(@m:14px, @ml:13px, @s:12px, @l: 16px, @xl: 20px) {
+.font(@m:14px, @ml:13px, @s:12px, @l: 16px, @xl: 20px, @pc: 20px) {
   @media screen {
     font-size: @m;
     line-height: @m;
@@ -19,10 +19,14 @@
       font-size: @xl;
       line-height: @xl;
     }
+    @media (min-width: 950px) {
+      font-size: @pc;
+      line-height: @pc;
+    }
   }
 }
 
-.height(@m:14px, @ml:13px, @s:12px, @l: 16px, @xl: 20px) {
+.height(@m:14px, @ml:13px, @s:12px, @l: 16px, @xl: 20px, @pc:20px) {
   @media screen {
     height: @m;
     @media (min-width: 330px) and (max-width: 369px) {
@@ -37,9 +41,12 @@
     @media (min-width: 650px) {
       height: @xl;
     }
+    @media (min-width: 950px) {
+      height: @pc;
+    }
   }
 }
-.margin(@m:14px, @ml:13px, @s:12px, @l: 16px) {
+.margin(@m:14px, @ml:13px, @s:12px, @l: 16px, @xl: 20px, @pc: 20px) {
   @media screen {
     margin: @m;
     @media (min-width: 330px) and (max-width: 369px) {
@@ -50,6 +57,12 @@
     }
     @media (min-width: 400px) {
       margin: @l;
+    }
+    @media (min-width: 650px) {
+      margin: @xl;
+    }
+    @media (min-width: 950px) {
+      margin: @pc;
     }
   }
 }
