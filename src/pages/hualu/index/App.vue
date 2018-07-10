@@ -14,22 +14,46 @@ import {mapActions, mapGetters} from 'vuex'
 export default {
   name: 'App',
   data: ()=> ({
-    time: 5
+    time: 10
   }),
   computed: {
     ...mapGetters([
       'get_pageAction'
     ])
   },
-  created() {
-    let loginT = self.time * 60 * 1000
-    if(sessionStorage.getItem('accessToken')) {
-      setTimeout(()=> {
-        sessionStorage.removeItem('accessToken')
-        sessionStorage.removeItem('iscode')
-        localStorage.removeItem('id')
-      }, loginT)
+  watch: {
+    '$route' (to, from) {
+      console.log('router change')
+      this.loginOutFn()
     }
+  },
+  methods: {
+    loginOutFn() {
+      let loginT = self.time * 60 * 1000
+      let t = 0
+      let timer = setInterval(()=> {
+        t++
+        if(t<10) {
+          let d = new Date()
+          let time = d.getTime()
+          let loginTime = localStorage.getItem('loginTime')
+          if(loginTime) {
+            if(Number.parseInt(loginTime)-time >= 0) {
+              localStorage.removeItem('accessToken')
+              localStorage.removeItem('loginTime')
+              clearInterval(timer)
+              return
+            }
+          }else {
+            localStorage.removeItem('accessToken')
+            clearInterval(timer)
+            return
+          }
+        }else {
+          clearInterval(timer)
+        }
+      }, loginT)
+    },
   }
 }
 </script>

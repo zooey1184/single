@@ -28,6 +28,12 @@
           <form-item title="截止到目前医保累计余额" :width="180" :showRight="false" :index="5">
             <p class="account_pane">{{pageData[0].ye}}</p>
           </form-item>
+          <form-item title="门诊累计" :width="180" v-if='pageData[0].mzlj' :showRight="false" :index="6">
+            <p class="account_pane">{{pageData[0].mzlj}}</p>
+          </form-item>
+          <form-item title="住院累计" :width="180" v-if='pageData[0].zjlj' :showRight="false" :index="7">
+            <p class="account_pane">{{pageData[0].zjlj}}</p>
+          </form-item>
         </form-list>
       </div>
       <div style="height: 70px;"></div>

@@ -22,7 +22,7 @@ router.beforeEach((to, from, next) => {
   if(to.path === '/login')  {
     next()
   } else {
-    if(to.meta.requiresAuth && !sessionStorage.getItem('accessToken')) {
+    if(to.meta.requiresAuth && !localStorage.getItem('accessToken')) {
       // alert('请先登录')
       next({ path: '/login' })
     }else {

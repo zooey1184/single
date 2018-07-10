@@ -72,6 +72,7 @@ export default {
   components: {
     login: ()=> import ('./login/loginPane.vue')
   },
+
   methods: {
     swiper() {
       let mySwiper = new Swiper('.swiper-container', {
@@ -101,9 +102,13 @@ export default {
     isLogin() {
       let code = sessionStorage.getItem('iscode')
       let id = localStorage.getItem('id')
+      let token = localStorage.getItem('accessToken')
       let b = false
       if(!!code || !!id) {
-        b = true
+        if(token && token == 'true') {
+          b = true
+        }
+        // b = true
       }else {
         b = false
       }

@@ -60,7 +60,7 @@ export default {
     loginType: "社保账号登录",
     iscode: "",
     pwd: "",
-    time: 5,     // 5分钟失效
+    time: 10,     // 5分钟失效
   }),
   props: {
     icon: {
@@ -101,6 +101,42 @@ export default {
         }
       }
     },
+    accessTokenFn() {
+      let d = new Date()
+      let t = d.getTime()
+      let offsetTime = this.time * 60 * 1000
+      let time = t + offsetTime
+      // 330682199106040014     330621199212202993
+      localStorage.setItem('loginTime', time)
+      localStorage.setItem('accessToken', true)
+    },
+    loginOutFn() {
+      let self = this
+      let loginT = self.time * 60 * 1000
+      let t = 0
+      let timer = setInterval(()=> {
+        t++
+        if(t<10) {
+          let d = new Date()
+          let time = d.getTime()
+          let loginTime = localStorage.getItem('loginTime')
+          if(loginTime) {
+            if(Number.parseInt(loginTime)-time >= 0) {
+              localStorage.removeItem('accessToken')
+              localStorage.removeItem('loginTime')
+              clearInterval(timer)
+              return
+            }
+          }else {
+            localStorage.removeItem('accessToken')
+            clearInterval(timer)
+            return
+          }
+        }else {
+          clearInterval(timer)
+        }
+      }, loginT)
+    },
     loginFn() {
       let self = this
       let s = {
@@ -136,15 +172,12 @@ export default {
               type: 'success',
               message: "登录成功"
             })
-            sessionStorage.setItem('accessToken', true)
-            let loginT = self.time * 60 * 1000
+            self.accessTokenFn()
+            // window.localStorage.setItem('accessToken', 'true')
             setTimeout(()=> {
-              sessionStorage.removeItem('accessToken')
-              sessionStorage.removeItem('iscode')
-              localStorage.removeItem('id')
-              self.$toast.show('登录失效')
-            }, loginT)
-            self.nextStep(self.iscode)
+              self.nextStep(self.iscode)
+              self.loginOutFn()
+            }, 50)
           }else if(code=="-1") {
             self.$toast.show(ret[0].retmsg)
           }else {
