@@ -23,15 +23,20 @@
           <div class="input_item">
             <input type="text" placeholder="社保账号（身份证号）" v-model="iscode">
           </div>
-          <!-- <div class="input_item">
+          <div class="input_item">
             <input type="password" placeholder="请输入密码" v-model="pwd">
-          </div> -->
+          </div>
         </div>
 
         <button class="btn login" @click="submitFn">登录</button>
         <p class="login_pwd_tip">没有账号？
           <span style="color: rgb(57, 160, 255)" @click="goRegister">去注册</span>
         </p>
+        <div class="">
+          <p class="login__footer--tip"> 2017年12月31日前参保的人员，用户已注册，初始密码为：000000。
+2018年01月01日后参保的人员，请先注册账户后再登录系统。
+（本网站推荐使用IE8.0以上版本的浏览器进行访问！）</p>
+        </div>
         <!-- <div style="margin-top: 40px;">
           <split-line>
             <p>其他登陆方式</p>
@@ -73,7 +78,8 @@ export default {
       'set_login'
     ]),
     goRegister() {
-      this.set_login('register')
+      // this.set_login('register')
+      window.location.href = 'http://shbx.sxxhrss.gov.cn/operation/f/user/register'
     },
     goSocial() {
       if(this.login_phone) {
@@ -90,12 +96,13 @@ export default {
       }else {
         // 社保账号登录
         if(this.iscode!=="") {
-          // if(this.pwd!==""){
-          //
-          // }else {
-          //   this.$toast.show("密码不能为空")
-          // }
-          this.loginFn()
+          if(this.pwd!==""){
+            // this.loginFn()
+            this.login2Fn()
+          }else {
+            this.$toast.show("密码不能为空")
+          }
+
         }else {
           this.$toast.show('账号不能为空')
         }
@@ -107,8 +114,8 @@ export default {
       let offsetTime = this.time * 60 * 1000
       let time = t + offsetTime
       // 330682199106040014     330621199212202993
-      localStorage.setItem('loginTime', time)
-      localStorage.setItem('accessToken', true)
+      window.localStorage.setItem('loginTime', time)
+      window.localStorage.setItem('accessToken', true)
     },
     loginOutFn() {
       let self = this
@@ -136,6 +143,37 @@ export default {
           clearInterval(timer)
         }
       }, loginT)
+    },
+    login2Fn() {
+      const self = this
+      $.ajax({
+        url: path().login,
+        data: {
+          sfz: self.iscode,
+          pw: self.pwd
+        },
+        type: 'GET',
+        success: r=> {
+          let ret = JSON.parse(r)
+          if(ret.rtmsg===1 || ret.rtmsg=='1') {
+            self.accessTokenFn()
+            window.localStorage.setItem('id', self.iscode)
+            window.sessionStorage.setItem('iscode', self.iscode)
+            sele.iscode = ''
+            self.pwd = ''
+            self.$toast.show({
+              position: 'middle',
+              type: 'success',
+              message: "登录成功"
+            })
+            setTimeout(()=> {
+              self.nextStep(self.iscode)
+            }, 50)
+          }else {
+            self.$toast.show('登录失败，请检查登录信息')
+          }
+        }
+      })
     },
     loginFn() {
       let self = this
@@ -165,6 +203,7 @@ export default {
           let code = ret[0].retcode
           if(code=="0" || code===0) {
             // 成功
+            self.accessTokenFn()
             window.localStorage.setItem('id', self.iscode)
             window.sessionStorage.setItem('iscode', self.iscode)
             self.$toast.show({
@@ -172,11 +211,11 @@ export default {
               type: 'success',
               message: "登录成功"
             })
-            self.accessTokenFn()
+
             // window.localStorage.setItem('accessToken', 'true')
             setTimeout(()=> {
               self.nextStep(self.iscode)
-              self.loginOutFn()
+              // self.loginOutFn()
             }, 50)
           }else if(code=="-1") {
             self.$toast.show(ret[0].retmsg)
@@ -329,5 +368,10 @@ export default {
 .btm_offset-enter, .btm_offset-leave-to {
   transform: translateY(50px);
   opacity: 0;
+}
+.login__footer--tip {
+  line-height: 23px;
+  color: rgb(198, 2, 2);
+  text-align: justify;
 }
 </style>

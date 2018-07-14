@@ -158,7 +158,7 @@ export default {
     },
   },
   created() {
-    document.title = this.title || "社保"
+    document.title = this.title || "社保服务"
     let obj = {
       top: 0,
       left: 0,

@@ -8,6 +8,7 @@ export default function() {
     getInfo: `${origin}${api}`,
     business: `${origin}/shebao/api/gr1040`,
     progress: `${origin}/shebao/api/gr1051`,
+    login: `${origin}/shebao/api/login`
   }
   return path
 }

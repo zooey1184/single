@@ -38,9 +38,10 @@ export default {
           let time = d.getTime()
           let loginTime = localStorage.getItem('loginTime')
           if(loginTime) {
-            if(Number.parseInt(loginTime)-time >= 0) {
+            if(Number.parseInt(loginTime)-time <= 0) {
               localStorage.removeItem('accessToken')
               localStorage.removeItem('loginTime')
+              console.log('超时');
               clearInterval(timer)
               return
             }

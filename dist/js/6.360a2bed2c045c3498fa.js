@@ -1,4 +1,4 @@
-webpackJsonp([6],{"/GrQ":function(e,t,n){"use strict";t.a=function(){var e=window.location.origin,t=e.match(/(localhost|127.0.0.1)/g)?"http://47.104.227.117:8080":e;return{getInfo:t+"/shebao/api/transfer",business:t+"/shebao/api/gr1040",progress:t+"/shebao/api/gr1051"}}},G5Yr:function(e,t,n){var r=n("qY5H");"string"==typeof r&&(r=[[e.i,r,""]]),r.locals&&(e.exports=r.locals);n("FIqI")("4bee36f4",r,!0,{})},L7Pj:function(e,t,n){var r,i;/*!
+webpackJsonp([6],{"/GrQ":function(e,t,n){"use strict";t.a=function(){var e=window.location.origin,t=e.match(/(localhost|127.0.0.1)/g)?"http://47.104.227.117:8080":e;return{getInfo:t+"/shebao/api/transfer",business:t+"/shebao/api/gr1040",progress:t+"/shebao/api/gr1051",login:t+"/shebao/api/login"}}},G5Yr:function(e,t,n){var r=n("qY5H");"string"==typeof r&&(r=[[e.i,r,""]]),r.locals&&(e.exports=r.locals);n("FIqI")("4bee36f4",r,!0,{})},L7Pj:function(e,t,n){var r,i;/*!
  * jQuery JavaScript Library v3.3.1
  * https://jquery.com/
  *
