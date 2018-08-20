@@ -1,5 +1,5 @@
 <template lang="html">
-  <page bgWrap="#fff" :showHeader="false">
+  <page bgWrap="#fff" :state='pageState' :showHeader="false">
     <div>
       <div>
         <transition name="btm_offset">
@@ -52,6 +52,7 @@
 import {mapActions} from 'vuex'
 import path from '@/api/path'
 import dataDeal from '../../init/config'
+import {getUrlData} from '@/common/js/base'
 import $ from 'jquery'
 
 export default {
@@ -66,6 +67,7 @@ export default {
     iscode: "",
     pwd: "",
     time: 10,     // 5分钟失效
+    pageState: 'loading'
   }),
   props: {
     icon: {
@@ -159,7 +161,7 @@ export default {
             self.accessTokenFn()
             window.localStorage.setItem('id', self.iscode)
             window.sessionStorage.setItem('iscode', self.iscode)
-            sele.iscode = ''
+            self.iscode = ''
             self.pwd = ''
             self.$toast.show({
               position: 'middle',
@@ -174,6 +176,24 @@ export default {
           }
         }
       })
+    },
+    login3Fn() {
+      const self = this
+      let p = getUrlData()
+      let iscode = p.idNumber
+      if(iscode) {
+        self.accessTokenFn()
+        window.localStorage.setItem('id', iscode)
+        window.sessionStorage.setItem('iscode', iscode)
+        self.$toast.show({
+          position: 'middle',
+          type: 'success',
+          message: "自动登录"
+        })
+        setTimeout(()=> {
+          self.nextStep(iscode)
+        }, 50)
+      }
     },
     loginFn() {
       let self = this
@@ -248,12 +268,18 @@ export default {
               sessionStorage.setItem('needInfo', 'no')
               setTimeout(()=> {
                 self.$router.push('/home')
+                setTimeout(()=> {
+                  this.pageState = 'success'
+                }, 10)
               }, 200)
             }else if(code=="-1") {
               self.$toast.show(ret[0].retmsg)
               sessionStorage.setItem('needInfo', 'yes')
               setTimeout(()=> {
                 self.$router.push('/info')
+                setTimeout(()=> {
+                  this.pageState = 'success'
+                }, 10)
               }, 200)
             }else {
               return
@@ -265,10 +291,20 @@ export default {
       }
     }
   },
+  created() {
+    const self = this
+    let p = getUrlData()
+    let iscode = p.idNumber
+    if(iscode) {
+      this.login3Fn()
+    }else {
+      this.pageState = 'success'
+    }
+  },
   mounted() {
     setTimeout(()=> {
       this.showLogin = true
-    }, 50)
+    }, 200)
   }
 }
 </script>

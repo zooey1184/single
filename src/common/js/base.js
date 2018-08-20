@@ -7,18 +7,10 @@ export function urlOrigin() {
   return /(127\.0\.0\.1|localhost|192\.168\.101\.55)/g.test(origin) ? 'http://kaifa.jianbing.com' : origin
 }
 
-export function appDevEvn() {
-  if (/(kaifa\.jianbing\.com|test\.jianbing\.com|localhost|127\.0\.0\.1)/.test(urlOrigin())) {
-    return true
-  } else {
-    return false
-  }
-}
-
 // 获取地址栏地址
 export function getUrlData(search) {
   let obj = {}
-  let dataArr = decodeURIComponent(window.location.search.slice(1)).split("&")
+  let dataArr = decodeURIComponent(window.location.href.split('?')[1]).split("&")
   dataArr.forEach((e,i) => {
   	try {
   		let arr = e.split('=')
@@ -28,95 +20,6 @@ export function getUrlData(search) {
   	}
   })
   return search ? obj[search] : obj
-}
-// 判断是否登录（浅）
-export function checkLogin(token='auth_token') {
-  let cookie = document.cookie
-  let loginStatus = false
-  let c = new RegExp(token)
-  if(cookie.match(c)) {
-    loginStatus = true
-  }else {
-    loginStatus = false
-  }
-  return loginStatus
-}
-// 直接login
-export function login() {
-  if (USER_AGENT.isGjj && window.Bridge) {
-    window.Bridge.action('login');
-    return;
-  }else {
-    let oFrom = getUrlData().from || 'jianbing';
-    let href = window.location.href
-    let host = location.origin
-    let reg = new RegExp(host)
-    let h = href.replace(reg, APP_HOST)
-    let hurl = h.match(/from/g) ? h : (h.match(/\?/g) ?  `${h}&from=${oFrom}` : `${h}?from=${oFrom}`)
-    window.location.href = `${APP_HOST}/hs/appgjj/login?appid=wx90f7de7c9b73bf69&return_url=${hurl}`
-  }
-}
-// 埋点
-export function burryPoint(type="event", id=1, desc={}) {
-  // id: 后台配置
-  // desc: 埋点描述
-  // type: 类型，进入页面或者事件埋点 进入[页面埋点]不需要id和描述
-  let script = document.getElementsByTagName('script')
-  let reg = "r.51gjj.com/assets/ja.min_1.1.0.js"
-  let r = new RegExp(reg)
-  class Point {
-    hasJs() {
-      let a = false
-      for(let value of script) {
-        if(value.src.match(r)) {
-          a = true
-        }
-      }
-      return a
-    }
-    insertJs(callback) {
-      let t = this.hasJs()
-      if(t) {
-        callback()
-        return
-      }else {
-        var ja = document.createElement('script'); ja.type = 'text/javascript'; ja.async = true;
-        ja.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'r.51gjj.com/assets/ja.min_1.1.0.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(ja, s);
-        document.write("<script>var _jaq = _jaq || []<\/script>");
-        callback()
-      }
-    }
-    deviceFn() {
-      let device = 'android'
-      if (/(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)) {
-        device = 'ios'
-      } else if (/(Android)/i.test(navigator.userAgent)) {
-        device = 'android'
-      } else {
-        device = 'pc'
-      };
-      return device
-    }
-  }
-  let p = new Point()
-  p.insertJs(insertPoint)
-  function insertPoint() {
-    let d = p.deviceFn()
-    let obj = {
-      category: d
-    }
-    Object.assign(obj, desc)
-    if(type=='view' || type==0 || type=='v') {
-      console.log("进入页面埋点成功");
-      _jaq.push(['_trackPageview'])
-
-    }else if(type=="event" || type=="e" || type==1) {
-      console.log("事件埋点成功");
-      _jaq.push(['_trackEvent', id, obj])
-    }
-  }
 }
 
 // 时间处理函数
