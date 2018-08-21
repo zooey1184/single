@@ -2,7 +2,7 @@
 <div class="page__wrap">
   <transition-group name='fade' tag='div'>
     <div class="pageWrap_wrap" v-show="(state=='success' || state=='normal')" :style="{background: bgWrap}" :key="0">
-      <div class="pageWrap_header_fixed" :style="{height: `${header_H}px`}" v-if="showHeader && !ua.isGjj">
+      <div class="pageWrap_header_fixed" :style="{height: `${header_H}px`}" v-if="showHeader">
         <slot name='header'>
           <nav-bar :title="title" :navStyle="navStyle"></nav-bar>
         </slot>

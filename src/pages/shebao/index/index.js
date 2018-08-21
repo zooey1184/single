@@ -16,8 +16,6 @@ import 'vue-easytable/libs/themes-base/index.css'
 import {VTable,VPagination} from 'vue-easytable'
 
 reg(Vue)
-// import vreg from 'vreg'
-// vreg(Vue)
 router.beforeEach((to, from, next) => {
   if(to.path === '/login')  {
     next()

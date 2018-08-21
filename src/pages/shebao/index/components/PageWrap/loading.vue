@@ -1,7 +1,5 @@
 <template>
-  <div class="mf-loading-container">
-    <img src="//r.51gjj.com/image/static/loading.gif">
-  </div>
+  <div class="mf-loading-container"></div>
 </template>
 <script type="text/ecmascript-6">
   const COMPONENT_NAME = 'loading'
