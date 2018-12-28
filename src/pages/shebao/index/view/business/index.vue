@@ -12,11 +12,11 @@
           <p>灵活就业人员续保</p>
           <i class="icon iconfont icon-baoxian1 icon_bg"></i>
         </div>
-        <!-- <div class="item blue_item" @click="goDetail(3)">
+        <div class="item blue_item" @click="goMain">
           <i class="icon iconfont icon-baoxianxiaoshou icon_font"></i>
-          <p>取消停保业务</p>
+          <p>一体化信息查询</p>
           <i class="icon iconfont icon-baoxianxiaoshou icon_bg"></i>
-        </div> -->
+        </div>
       </div>
     </div>
   </page>
@@ -49,6 +49,10 @@ export default {
       this.$router.push(`/social_detail/${state}`)
 
     },
+    goMain() {
+      // console.log('object');
+      this.$router.push('/social_detail/main')
+    }
   }
 }
 </script>
@@ -80,21 +84,22 @@ export default {
   margin: 20px auto;
   @media screen {
     margin-bottom: 20px;
-    @media (min-width: 330px) and (max-width: 369px) {
-      margin-bottom: 20px;
-    }
-    @media (max-width: 329px) {
-      margin-bottom: 20px;
-    }
-    @media (min-width: 400px) {
-      margin-bottom: 20px;
-    }
-    @media (min-width: 650px) {
-      margin-bottom: 50px;
-    }
-    @media (min-width: 950px) {
-      margin-bottom: 80px;
-    }
+  }
+
+  @media (min-width: 330px) and (max-width: 369px) {
+    margin-bottom: 20px;
+  }
+  @media (max-width: 329px) {
+    margin-bottom: 20px;
+  }
+  @media (min-width: 400px) {
+    margin-bottom: 20px;
+  }
+  @media (min-width: 650px) {
+    margin-bottom: 50px;
+  }
+  @media (min-width: 950px) {
+    margin-bottom: 80px;
   }
   p {
     // font-size: 20px;

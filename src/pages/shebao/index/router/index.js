@@ -81,6 +81,14 @@ export default new Router({
       }
     },
     {
+      path: '/social_detail/main',
+      name: 'social_main',
+      component: () => import('../view/business/content.vue'),
+      meta: {
+        requiresAuth: true
+      }
+    },
+    {
       path: '/social_prove',
       name: 'social_prove',
       component: () => import('../view/business/prove.vue'),
