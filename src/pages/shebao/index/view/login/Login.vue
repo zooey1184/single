@@ -326,7 +326,7 @@ export default {
     position: absolute;
     left: 40px;
     z-index: 2;
-    -webkit-mask-image: -webkit-gradient(linear, right top, left bottom, from(#ff0000), to(rgba(0, 0, 0, 0)));
+    // -webkit-mask-image: -webkit-gradient(linear, right top, left bottom, from(#ff0000), to(rgba(0, 0, 0, 0)));
   }
 }
 .login_pane {

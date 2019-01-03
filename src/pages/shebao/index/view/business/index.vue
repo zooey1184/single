@@ -1,4 +1,4 @@
-<template lang="html">
+<template>
   <page title="社保业务经办" :state="pageState">
     <div class="">
       <div class="middle_pane">
@@ -12,10 +12,33 @@
           <p>灵活就业人员续保</p>
           <i class="icon iconfont icon-baoxian1 icon_bg"></i>
         </div>
-        <div class="item blue_item" @click="goMain">
+        <div class="item blue_item" @click="goMain(2)">
+          <i class="icon iconfont icon-shebao icon_font"></i>
+          <p>灵活就业人员中断</p>
+          <i class="icon iconfont icon-shebao icon_bg"></i>
+        </div>
+        <div class="item blue_item" @click="goMain(3)">
           <i class="icon iconfont icon-baoxianxiaoshou icon_font"></i>
-          <p>一体化信息查询</p>
+          <p>灵活就业人员新增</p>
+          <div class="desc">( 附带当年补缴 )</div>
           <i class="icon iconfont icon-baoxianxiaoshou icon_bg"></i>
+        </div>
+        <div class="item blue_item" @click="goMain(4)">
+          <i class="icon iconfont icon-baoxian icon_font"></i>
+          <p>灵活就业人员续保</p>
+          <div class="desc">( 附带当年补缴 )</div>
+          <i class="icon iconfont icon-baoxian icon_bg"></i>
+        </div>
+        
+        <div class="item blue_item" @click="goMain(5)">
+          <i class="icon iconfont icon-info-query icon_font"></i>
+          <p>医疗险种 ( 增加 )</p>
+          <i class="icon iconfont icon-info-query icon_bg"></i>
+        </div>
+        <div class="item blue_item" @click="goMain(6)">
+          <i class="icon iconfont icon-yiyaobaojian icon_font"></i>
+          <p>医疗险种 ( 减少 )</p>
+          <i class="icon iconfont icon-yiyaobaojian icon_bg"></i>
         </div>
       </div>
     </div>
@@ -49,9 +72,10 @@ export default {
       this.$router.push(`/social_detail/${state}`)
 
     },
-    goMain() {
+    goMain(state) {
       // console.log('object');
-      this.$router.push('/one_detail/1')
+      this.set_business(state)
+      this.$router.push(`/one_detail/${state}`)
     }
   }
 }
@@ -67,14 +91,16 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .item {
   width: 80%;
   overflow: hidden;
+  flex-shrink: 0;
+  flex-grow: 1;
   // max-width: 280px;
   // .height(140px, 135px, 135px, 145px, 250px, 280px);
-  height: 30%;
+  height: 20%;
   position: relative;
   border-radius: 10px;
   background: #fff;
@@ -107,7 +133,12 @@ export default {
     font-family: "微软雅黑";
     font-weight: normal;
     color: #fff;
-    margin-top: 70px;
+    margin-top: 30px;
+    line-height: 35px;
+  }
+  .desc {
+    color: #fafafa;
+    margin-top: 10px;
   }
 }
 .yello_item {
