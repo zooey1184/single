@@ -81,7 +81,7 @@ export default new Router({
       }
     },
     {
-      path: '/social_detail/main',
+      path: '/one_detail/:state', // 一体化信息
       name: 'social_main',
       component: () => import('../view/business/content.vue'),
       meta: {

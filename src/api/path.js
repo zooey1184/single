@@ -7,6 +7,7 @@ export default function() {
   const path = {
     getInfo: `${origin}${api}`,
     business: `${origin}/shebao/api/gr1040`,
+    oneInfo: `${origin}/shebao/api/gr1092`,
     progress: `${origin}/shebao/api/gr1051`,
     login: `${origin}/shebao/api/login`
   }

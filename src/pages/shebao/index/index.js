@@ -7,8 +7,8 @@ import router from './router'
 Vue.config.productionTip = false
 import PageWrap from './components/PageWrap/PageWrap.vue'
 import store from './store'
-import 'babel-polyfill'
-import Es6Promise from 'es6-promise'
+// import 'babel-polyfill'
+// import Es6Promise from 'es6-promise'
 import reg from '@/plugin/VReg/VReg.js'
 import Toast from '@/plugin/tip/tip.js'
 import picker from '@/plugin/picker/picker.js'
@@ -31,8 +31,8 @@ router.beforeEach((to, from, next) => {
 
 Vue.component(VTable.name, VTable)
 Vue.component(VPagination.name, VPagination)
-require('es6-promise').polyfill()
-Es6Promise.polyfill()
+// require('es6-promise').polyfill()
+// Es6Promise.polyfill()
 Vue.use(Toast)
 Vue.use(picker)
 Vue.component('page', PageWrap)

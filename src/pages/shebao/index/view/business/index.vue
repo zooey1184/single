@@ -51,7 +51,7 @@ export default {
     },
     goMain() {
       // console.log('object');
-      this.$router.push('/social_detail/main')
+      this.$router.push('/one_detail/1')
     }
   }
 }
