@@ -104,7 +104,7 @@ export default {
     },
     infoData: {
       sxlx: '', // 事项类型 0-6
-      iscode: '330682199106040014',
+      iscode: '',
       psname: '',
       sjhm: '',
       lxdz: '',

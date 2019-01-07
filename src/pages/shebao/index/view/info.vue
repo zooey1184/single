@@ -100,6 +100,10 @@ export default {
               hjdz: ret[0].regaddr,
               xjzdz: ret[0].address
             }
+            // this.townName = ret[0].groupidname
+            // setTimeout(()=> {
+            //   this.communityName = ret[0].groupidname2
+            // }, 50)
           }else if(code=="-1") {
             self.pageData.iscode = sessionStorage.getItem('iscode') || localStorage.getItem('id') || ""
             return
@@ -162,7 +166,7 @@ export default {
                 message: "保存成功"
               })
               setTimeout(()=> {
-                self.$router.back()
+                self.$router.replace('/home')
               }, 1200)
             }else if(code=="-1") {
               self.$toast.show(ret[0].retmsg)

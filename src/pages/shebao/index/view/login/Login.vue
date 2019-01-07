@@ -161,8 +161,7 @@ export default {
             self.accessTokenFn()
             window.localStorage.setItem('id', self.iscode)
             window.sessionStorage.setItem('iscode', self.iscode)
-            self.iscode = ''
-            self.pwd = ''
+            
             self.$toast.show({
               position: 'middle',
               type: 'success',
@@ -171,6 +170,10 @@ export default {
             setTimeout(()=> {
               self.nextStep(self.iscode)
             }, 50)
+            setTimeout(()=> {
+              self.iscode = ''
+              self.pwd = ''
+            }, 600)
           }else {
             self.$toast.show('登录失败，请检查登录信息')
           }
@@ -268,18 +271,12 @@ export default {
               sessionStorage.setItem('needInfo', 'no')
               setTimeout(()=> {
                 self.$router.push('/home')
-                setTimeout(()=> {
-                  this.pageState = 'success'
-                }, 10)
               }, 200)
             }else if(code=="-1") {
               self.$toast.show(ret[0].retmsg)
               sessionStorage.setItem('needInfo', 'yes')
               setTimeout(()=> {
                 self.$router.push('/info')
-                setTimeout(()=> {
-                  this.pageState = 'success'
-                }, 10)
               }, 200)
             }else {
               return
