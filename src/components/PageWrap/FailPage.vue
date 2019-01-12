@@ -2,7 +2,7 @@
   <div class="PageWrap_fail_wrap">
     <div class="error_wrap">
       <slot>
-        <img src="//oo6gk8wuu.bkt.clouddn.com/update.png" alt="">
+        <img src="./404.png" alt="">
       </slot>
       <p class="tip">{{tip==""?"请求出错，请稍后再试": tip}}</p>
       <p style="color: rgb(6, 178, 242); margin: 10px 0" @click="backFn" v-if="showBack">返回</p>

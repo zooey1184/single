@@ -3,7 +3,7 @@
   <page :showFooter="true">
     <div>
       <form-list name="rightOffset">
-        <form-item title="事项类型" :index="0" :width="100" :showRight='false'>
+        <form-item title="事项类型" :index="0" :width="100" @click.native='pickTypeFn'  v-reg:regDetail="{rule: /[^\s]/g, msg: '请选择事项类型', test: info_type, tag: 'info_type'}">
           <input type="text" placeholder="请选择事项类型" readonly v-model="info_type">
         </form-item>
         <form-item title="身份证号" :index="1" :width="100" :showRight="false" v-reg:regDetail="{type: 'id', test: infoData.iscode, tag: 'iscode'}">
@@ -119,6 +119,7 @@ export default {
       sxcode: '3306211129', // 事项编码
       sxname: '个体劳动者（灵活就业人员）参保登记' // 事项名称
     },
+    info_type: '',
     dateType: 'yaosdate',
     frcode: '自由职业80档',
     sf: '是',
@@ -134,14 +135,14 @@ export default {
     ...mapGetters([
       'get_business'
     ]),
-    info_type: function() {
-      let n = Number.parseInt(this.get_business)
-      console.log(n);
-      console.log(this.infoType[n]);
-      return this.infoType[n]
-    },
+    // info_type: function() {
+    //   let n = Number.parseInt(this.get_business)
+    //   console.log(n);
+    //   console.log(this.infoType[n]);
+    //   return this.infoType[n]
+    // },
     showYiedate: function() {
-      return (this.get_business == '3' || this.get_business == '4') ? true : false
+      return (this.infoData.sxlx == '3' || this.infoData.sxlx == '4') ? true : false
     }
   },
   watch: {
@@ -228,6 +229,25 @@ export default {
         confirmFn: function(i, k, t) {
           self.pageData.sex = t[0]
           // self.infoData.sex = t[0]
+        }
+      })
+    },
+    pickTypeFn() {
+      const self = this
+      const d = this.infoType
+      let data = []
+      data = d.map((item, index)=> {
+        return {
+          text: item,
+          value: index
+        }
+      })
+      this.$picker.show({
+        dataPick: data,
+        confirmFn: (i, k, t)=> {
+          self.infoData.sxlx = k[0]
+          self.info_type = t[0]
+          console.log(`sxlx: ${k[0]}, text: ${t[0]}`);
         }
       })
     },
@@ -323,7 +343,7 @@ export default {
       // check('regDetail')
       if(check('regDetail')) {
         let d = new Date()
-        this.infoData.sxlx = this.get_business
+        // this.infoData.sxlx = this.get_business
         this.infoData.lxdz = this.townName + '-' + this.communityName + '-' + this.pageData.xjzdz
         let self = this
         let s = dataDeal.submitJson({
@@ -334,44 +354,33 @@ export default {
         let data = {
           inmsg: s
         }
-        $.ajax({
-          url: path().getInfo,
-          data: data,
-          type: 'post',
-          success: r=> {
-            let ret = dataDeal.formJson(r)
-            console.log(ret);
-            if(ret.length>0) {
-              let res = ret[0]
-              if(res.retcode===0 || res.retcode=='0') {
-                self.$toast.show({
-                  position: 'middle',
-                  type: 'success',
-                  message: "受理成功"
-                })
-                setTimeout(()=> {
-                  self.$router.back()
-                }, 1000)
-              }else {
-                self.$toast.show('出错啦，请稍后再试')
-              }
-            }else {
-              self.$toast.show('出错啦，请稍后再试')
-            }
-            // if(r===0 ||r=='0') {
-              
-            // }else if(r===1 || r=='1') {
-            //   self.$toast.show({
-            //     position: 'middle',
-            //     type: 'success',
-            //     message: "受理成功"
-            //   })
-            //   setTimeout(()=> {
-            //     self.$router.back()
-            //   }, 1000)
-            // }
-          }
-        })
+        console.log(s);
+        // $.ajax({
+        //   url: path().getInfo,
+        //   data: data,
+        //   type: 'post',
+        //   success: r=> {
+        //     let ret = dataDeal.formJson(r)
+        //     console.log(ret);
+        //     if(ret.length>0) {
+        //       let res = ret[0]
+        //       if(res.retcode===0 || res.retcode=='0') {
+        //         self.$toast.show({
+        //           position: 'middle',
+        //           type: 'success',
+        //           message: "受理成功"
+        //         })
+        //         setTimeout(()=> {
+        //           self.$router.back()
+        //         }, 1000)
+        //       }else {
+        //         self.$toast.show('出错啦，请稍后再试')
+        //       }
+        //     }else {
+        //       self.$toast.show('出错啦，请稍后再试')
+        //     }
+        //   }
+        // })
       }else {
         setTimeout(()=> {
           this.check = false
