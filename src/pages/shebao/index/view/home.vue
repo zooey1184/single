@@ -29,7 +29,7 @@
           <i class="icon icon-shebaorenzheng iconfont" style="color: rgb(255, 169, 3)"></i>
           <p class="item_font">参保证明</p>
         </div>
-        <div class="item" @click="goUrl('/one_detail/0')">
+        <div class="item" @click="goUrl('/social_index')">
           <i class="icon icon-shebaochaxun iconfont" style="color: rgb(28, 161, 246)"></i>
           <p class="item_font">社保业务</p>
         </div>

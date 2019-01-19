@@ -2,12 +2,12 @@
   <page title="社保业务经办" :state="pageState">
     <div class="">
       <div class="middle_pane">
-        <div class="item blue_item" @click="goDetail(1)">
+        <div class="item blue_item" @click="goMain(0)">
           <i class="icon iconfont icon-qiandai icon_font"></i>
           <p>灵活就业人员新增</p>
           <i class="icon iconfont icon-qiandai icon_bg"></i>
         </div>
-        <div class="item blue_item" @click="goDetail(2)">
+        <!-- <div class="item blue_item" @click="goDetail(2)">
           <i class="icon iconfont icon-baoxian1 icon_font"></i>
           <p>灵活就业人员续保</p>
           <i class="icon iconfont icon-baoxian1 icon_bg"></i>
@@ -39,7 +39,7 @@
           <i class="icon iconfont icon-yiyaobaojian icon_font"></i>
           <p>医疗险种 ( 减少 )</p>
           <i class="icon iconfont icon-yiyaobaojian icon_bg"></i>
-        </div>
+        </div> -->
       </div>
     </div>
   </page>
@@ -96,8 +96,8 @@ export default {
 .item {
   width: 80%;
   overflow: hidden;
-  flex-shrink: 0;
-  flex-grow: 1;
+  // flex-shrink: 0;
+  // flex-grow: 1;
   // max-width: 280px;
   // .height(140px, 135px, 135px, 145px, 250px, 280px);
   height: 20%;
