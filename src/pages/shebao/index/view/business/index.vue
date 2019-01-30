@@ -7,17 +7,18 @@
           <p>灵活就业人员新增</p>
           <i class="icon iconfont icon-qiandai icon_bg"></i>
         </div>
-        <!-- <div class="item blue_item" @click="goDetail(2)">
+        <div class="item blue_item" @click="goMain(1)">
           <i class="icon iconfont icon-baoxian1 icon_font"></i>
-          <p>灵活就业人员续保</p>
-          <i class="icon iconfont icon-baoxian1 icon_bg"></i>
+          <p>城乡居民基本养老保险参保登记</p>
+          <!-- <i class="icon iconfont icon-baoxian1 icon_bg"></i> -->
         </div>
         <div class="item blue_item" @click="goMain(2)">
           <i class="icon iconfont icon-shebao icon_font"></i>
-          <p>灵活就业人员中断</p>
-          <i class="icon iconfont icon-shebao icon_bg"></i>
+          <!-- <i class="icon iconfont icon-shebao icon_bg"></i> -->
+          <p>新增退休人员养老保险待遇核准支付</p>
+          
         </div>
-        <div class="item blue_item" @click="goMain(3)">
+        <!-- <div class="item blue_item" @click="goMain(3)">
           <i class="icon iconfont icon-baoxianxiaoshou icon_font"></i>
           <p>灵活就业人员新增</p>
           <div class="desc">( 附带当年补缴 )</div>
@@ -72,6 +73,12 @@ export default {
       this.$router.push(`/social_detail/${state}`)
 
     },
+    goInsurlancePay() {
+
+    },
+    goCheckIn() {
+
+    },
     goMain(state) {
       // console.log('object');
       this.set_business(state)
@@ -96,10 +103,6 @@ export default {
 .item {
   width: 80%;
   overflow: hidden;
-  // flex-shrink: 0;
-  // flex-grow: 1;
-  // max-width: 280px;
-  // .height(140px, 135px, 135px, 145px, 250px, 280px);
   height: 20%;
   position: relative;
   border-radius: 10px;
@@ -135,6 +138,7 @@ export default {
     color: #fff;
     margin-top: 30px;
     line-height: 35px;
+    z-index: 9;
   }
   .desc {
     color: #fafafa;

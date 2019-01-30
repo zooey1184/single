@@ -1,10 +1,13 @@
-<template lang="html">
+<template>
 <div>
   <page :showFooter="true">
     <div>
       <form-list name="rightOffset">
-        <form-item title="事项类型" :index="0" :width="100" @click.native='pickTypeFn'  v-reg:regDetail="{rule: /[^\s]/g, msg: '请选择事项类型', test: info_type, tag: 'info_type'}">
+        <form-item title="事项类型" v-if='showType1' :index="0" :width="100" @click.native='pickTypeFn'  v-reg:regDetail="{rule: /[^\s]/g, msg: '请选择事项类型', test: info_type, tag: 'info_type'}">
           <input type="text" placeholder="请选择事项类型" readonly v-model="info_type">
+        </form-item>
+        <form-item title="事项类型" v-else :index="0" :showRight='false' :width="100">
+          <p>{{sxcodeArr[get_business].sxname}}</p>
         </form-item>
         <form-item title="身份证号" :index="1" :width="100" :showRight="false" v-reg:regDetail="{type: 'id', test: infoData.iscode, tag: 'iscode'}">
           <input type="text" placeholder="请输入身份证号" v-model="infoData.iscode">
@@ -22,6 +25,9 @@
           <input type="text" placeholder="请输入出生日期" v-model="pageData.born">
         </form-item>
 
+        <form-item title="退休类型" v-if='showType2' :index="6" :width="100" @click.native='pickTuixiuFn'  v-reg:regDetail="{rule: /[^\s]/g, msg: '请选择事项类型', test: tuixiu_type, tag: 'tuixiu_type'}">
+          <input type="text" placeholder="请选择事项类型" readonly v-model="tuixiu_type">
+        </form-item>
         <form-item title="养老补缴开始时间" v-if='showYiedate' :index="6"  :width="120" @click.native="showPick('yaosdate')">
           <input type="text" placeholder="请选择养老补缴开始时间" v-model="infoData.yaosdate">
         </form-item>
@@ -50,13 +56,13 @@
         <form-item title="现居住地址" :index="11"  :width="100" :showRight="false" v-reg:regDetail="{rule: /[^\s]/g, msg: '请输入现居住地址', test: pageData.xjzdz, tag: 'xjzdz'}">
           <input type="text" placeholder="请输入现居住地址" v-model="pageData.xjzdz">
         </form-item>
-        <form-item title="代办人姓名" :index="12"  :width="100" :showRight="false">
+        <form-item title="代办人姓名" :index="12"  :width="100" :showRight="false" v-if='showType1'>
           <input type="text" placeholder="请输入姓名（若代办）" v-model="pageData.dbrname">
         </form-item>
-        <form-item title="代办人身份证" :index="13"  :width="100" :showRight="false">
+        <form-item title="代办人身份证" :index="13"  :width="100" v-if='showType1' :showRight="false">
           <input type="text" placeholder="请输入身份证号（若代办）" v-model="pageData.dbrid">
         </form-item>
-        <form-item title="代办人手机号" :index="14"  :width="100" :showRight="false">
+        <form-item title="代办人手机号" :index="14"  :width="100" v-if='showType1' :showRight="false">
           <input type="text" placeholder="请输入手机号（若代办）" v-model="pageData.dbrtel">
         </form-item>
       </form-list>
@@ -117,7 +123,7 @@ export default {
       yiedate: '',
       frcode: '11', // 缴费标准
       sxcode: '3306211129', // 事项编码
-      sxname: '个体劳动者（灵活就业人员）参保登记' // 事项名称
+      sxname: '个体劳动者（灵活就业人员）参保登记', // 事项名称
     },
     info_type: '',
     dateType: 'yaosdate',
@@ -130,19 +136,35 @@ export default {
     data: [town],
     townName: '',
     communityName: "",
+    tuixiuType: ['正常退休', '提前退休'],
+    tuixiu_type: '',
+    sxcodeArr: [
+      {
+        sxcode: '3306211129',
+        sxname: '个体劳动者（灵活就业人员）参保登记'
+      },
+      {
+        sxcode: '3306211136',
+        sxname: '城乡居民基本养老保险参保登记'
+      },
+      {
+        sxcode: '3306213329',
+        sxname: '新增退休人员养老保险待遇核准支付'
+      }
+    ]
   }),
   computed: {
     ...mapGetters([
       'get_business'
     ]),
-    // info_type: function() {
-    //   let n = Number.parseInt(this.get_business)
-    //   console.log(n);
-    //   console.log(this.infoType[n]);
-    //   return this.infoType[n]
-    // },
     showYiedate: function() {
       return (this.infoData.sxlx == '3' || this.infoData.sxlx == '4') ? true : false
+    },
+    showType1: function() {
+      return this.get_business !== 0 ? false : true
+    },
+    showType2: function() {
+      return this.get_business !== 2 ? false : true
     }
   },
   watch: {
@@ -251,6 +273,25 @@ export default {
         }
       })
     },
+    pickTuixiuFn() {
+      const self = this
+      const d = this.tuixiuType
+      let data = []
+      data = d.map((item, index)=> {
+        return {
+          text: item,
+          value: index
+        }
+      })
+      this.$picker.show({
+        dataPick: data,
+        confirmFn: (i, k, t)=> {
+          self.infoData.txlx = k[0]
+          self.tuixiu_type = t[0]
+          console.log(`sxlx: ${k[0]}, text: ${t[0]}`);
+        }
+      })
+    },
     pickStandardFn() {
       const self = this
       let d = [
@@ -345,6 +386,9 @@ export default {
         let d = new Date()
         // this.infoData.sxlx = this.get_business
         this.infoData.lxdz = this.townName + '-' + this.communityName + '-' + this.pageData.xjzdz
+        this.infoData.groupidcx = this.townName
+        this.infoData.groupidcx2 = this.communityName
+        this.infoData.regaddr = this.infoData.lxdz
         let self = this
         let s = dataDeal.submitJson({
           jyh: "GR1092",
@@ -355,32 +399,31 @@ export default {
           inmsg: s
         }
         console.log(s);
-        // $.ajax({
-        //   url: path().getInfo,
-        //   data: data,
-        //   type: 'post',
-        //   success: r=> {
-        //     let ret = dataDeal.formJson(r)
-        //     console.log(ret);
-        //     if(ret.length>0) {
-        //       let res = ret[0]
-        //       if(res.retcode===0 || res.retcode=='0') {
-        //         self.$toast.show({
-        //           position: 'middle',
-        //           type: 'success',
-        //           message: "受理成功"
-        //         })
-        //         setTimeout(()=> {
-        //           self.$router.back()
-        //         }, 1000)
-        //       }else {
-        //         self.$toast.show('出错啦，请稍后再试')
-        //       }
-        //     }else {
-        //       self.$toast.show('出错啦，请稍后再试')
-        //     }
-        //   }
-        // })
+        $.ajax({
+          url: path().getInfo,
+          data: data,
+          type: 'post',
+          success: r=> {
+            let ret = dataDeal.formJson(r)
+            if(ret.length>0) {
+              let res = ret[0]
+              if(res.retcode===0 || res.retcode=='0') {
+                self.$toast.show({
+                  position: 'middle',
+                  type: 'success',
+                  message: "受理成功"
+                })
+                setTimeout(()=> {
+                  self.$router.back()
+                }, 1000)
+              }else {
+                self.$toast.show('出错啦，请稍后再试')
+              }
+            }else {
+              self.$toast.show('出错啦，请稍后再试')
+            }
+          }
+        })
       }else {
         setTimeout(()=> {
           this.check = false
