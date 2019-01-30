@@ -389,6 +389,10 @@ export default {
         this.infoData.groupidcx = this.townName
         this.infoData.groupidcx2 = this.communityName
         this.infoData.regaddr = this.infoData.lxdz
+        if(!this.showType2) {
+          this.infoData.txlx = ''
+          this.tuixiu_type = ''
+        }
         let self = this
         let s = dataDeal.submitJson({
           jyh: "GR1092",
