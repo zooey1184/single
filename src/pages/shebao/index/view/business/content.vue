@@ -389,6 +389,9 @@ export default {
         this.infoData.groupidcx = this.townName
         this.infoData.groupidcx2 = this.communityName
         this.infoData.regaddr = this.infoData.lxdz
+        let sx = this.get_business
+        this.infoData.sxcode = this.sxcodeArr[sx].sxcode
+        this.infoData.sxname = this.sxcodeArr[sx].sxname
         if(!this.showType2) {
           this.infoData.txlx = ''
           this.tuixiu_type = ''
